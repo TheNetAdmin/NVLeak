@@ -14,3 +14,7 @@ This repo contains artifacts for our USENIX Security '23 paper *NVLeak: Off-Chip
   year      = {2023}
 }
 ```
+
+## License
+
+The code is distributed under MIT license unless otherwise stated under sub folders.
