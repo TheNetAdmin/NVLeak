@@ -47,7 +47,13 @@ Log in to the NVRAM Server and:
    BOOT_IMAGE=/vmlinuz-5.4.0-110-generic root=... ro nokaslr memmap=32G!16G log-buf-len=1G mitigations=off
    ```
 
-3. Configure the Optane DIMMs into non-interleaved mode
+3. Turn off SMT through BIOS or using the script:
+
+   ```shell
+   $ bash nvleak/scripts/machine/smt.sh
+   ```
+
+4. Configure the Optane DIMMs into non-interleaved mode
 
    ```shell
    # When prompting "Do you want to continue? [y/n]", enter "y" to continue
@@ -82,7 +88,7 @@ Log in to the NVRAM Server and:
    ]
    ```
 
-4. Set up git safe dir to run `git` under git submodule dirs
+5. Set up git safe dir to run `git` under git submodule dirs
 
    ```shell
    $ sudo -i su
