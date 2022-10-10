@@ -8,13 +8,13 @@ make_flag:=--no-print-directory -j8
 
 RSCRIPT:=Rscript --no-save --no-restore
 
-plot/example.tikz: ../data/example.csv \
-                   src/example.R
+plot/reference/fig2a-pointer-chasing.tikz: ../data/reference/fig2/pointer_chasing.csv \
+                                           src/fig2a-pointer-chasing.R
 	@echo -e "GEN \t $@"
 	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz 
 
 
-plot/example.tikz.pdf: plot/example.tikz
+plot/reference/fig2a-pointer-chasing.tikz.pdf: plot/reference/fig2a-pointer-chasing.tikz
 	@echo -e "GEN \t $@"
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
@@ -34,10 +34,10 @@ all_pdf:
 all_png: 
 
 .PHONY:   all_tikz
-all_tikz: plot/example.tikz
+all_tikz: plot/reference/fig2a-pointer-chasing.tikz
 
 .PHONY:       all_tikz_pdf
-all_tikz_pdf: plot/example.tikz.pdf
+all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -56,10 +56,10 @@ figure:
 .PHONY:      tikz_to_pdf
 tikz_to_pdf: out/plots.pdf
 
-out/plots.pdf: plots.tex         \
-               config            \
-               figure            \
-               plot/example.tikz
+out/plots.pdf: plots.tex                                 \
+               config                                    \
+               figure                                    \
+               plot/reference/fig2a-pointer-chasing.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -73,13 +73,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/example.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/example.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf
 
 
 .PHONY: clean_tikz_svg

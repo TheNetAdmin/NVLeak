@@ -215,6 +215,8 @@
 \usepackage{ctable}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
+% https://tex.stackexchange.com/a/44199
+% \usepackage{picins}
 
 % https://tex.stackexchange.com/a/349084
 % \usepackage{flushend}
