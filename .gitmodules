@@ -2,3 +2,6 @@
 	path = nvleak
 	url = git@github.com:thenetadmin/lens
 	branch = nvleak
+[submodule "lens"]
+	path = lens
+	url = git@github.com:thenetadmin/lens

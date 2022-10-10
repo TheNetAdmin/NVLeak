@@ -30,11 +30,14 @@ We provide a set of scripts to automatically configure the Linux environment. Th
 Log in to the NVRAM Server and:
 
 1. Log in to the root user as the scripts implicitly assume they run with the sudo priviledge (assuming username is `usenix`):
+
    ```shell
    $ sudo -i su
    $ cd /home/usenix/NVLeak
    ```
+
 2. Set up the kernel boot command and reboot
+
    ```shell
    $ bash nvleak/scripts/machine/machine.sh setup
    # When prompting "Do you want to continue? [y/n]", enter "y" to continue
@@ -43,7 +46,9 @@ Log in to the NVRAM Server and:
    $ cat /proc/cmdline
    BOOT_IMAGE=/vmlinuz-5.4.0-110-generic root=... ro nokaslr memmap=32G!16G log-buf-len=1G mitigations=off
    ```
+
 3. Configure the Optane DIMMs into non-interleaved mode
+
    ```shell
    # When prompting "Do you want to continue? [y/n]", enter "y" to continue
    $ sudo bash nvleak/scripts/machine/optane.sh reset
@@ -75,6 +80,27 @@ Log in to the NVRAM Server and:
        "blockdev":"pmem0"
      }
    ]
+   ```
+
+4. Set up git safe dir to run `git` under git submodule dirs
+
+   ```shell
+   $ sudo -i su
+   
+   # Check Check if git runs fine under submodule dir
+   $ git status
+   fatal: unsafe repository ('/home/usenix/NVLeak/nvleak' is owned by someone else)
+   ...
+   # If you do not see the above error message, then try `git diff`,
+   # and if `git diff` works fine, then you can skip the following `git config`
+
+   $ git config --global --add safe.directory /home/usenix/NVLeak/nvleak
+
+   # Check if git runs fine now under submodule dir
+   $ cd /home/usenix/NVLeak/nvleak
+   $ git status
+   ...
+   nothing to commit, working tree clean
    ```
 
 ### Manually set up the environments
