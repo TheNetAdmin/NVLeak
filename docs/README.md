@@ -21,3 +21,33 @@ In the remaining doc, we use the following terms:
 
 1. Set up the NVRAM Server environment following the [instructions](./SetUpNVRAM.md)
 2. Set up the Dev Server environment following the [instructions](./SetUpDev.md)
+
+## Run experiments on the NVRAM Server
+
+The major claims of our [USENIX Security 23 paper](./usenix23-nvleak.pdf) are listed below:
+
+> In our main paper, Figure 2 to 17 are from the Server A (see Table 1 in the main paper) and Figure 18 is from the Server B and it's from the same experiments as Figure 4-7.
+
+| Figure # | Type                | Description                                                 |
+| :------- | :------------------ | :---------------------------------------------------------- |
+| 2        | Reverse Engineering | Recover L1/L2 NVCache sizes and their block sizes           |
+| 4        | Reverse Engineering | Recover L1/L2 NVCache set structures                        |
+| 5        | Reverse Engineering | Recover the wear-leveling policy                            |
+| 6        | Reverse Engineering | Recover the wear-leveling's trigger condition               |
+| 7        | Reverse Engineering | Recover the robustness of wear-leveling data migration      |
+| 9b & 9c  | Covert Channel      | Cross virtual machine covert channel performance and signal |
+| 10       | Covert Channel      | Filesystem inode-based covert channel                       |
+| 12       | Side Channel        | Access patterns of SQLite executing different SQL code      |
+| 13       | Side Channel        | Access patterns of SQLite executing ranged queries          |
+| 14       | Side Channel        | Access patterns of PMDK key-value store                     |
+| 15       | Side Channel        | Detected function calls from wolfSSL library                |
+| 16       | Mitigation          | Effectiveness and performance of the PMDK-based mitigation  |
+| 17       | Reverse Engineering | Detailed pointer chasing results on Server A                |
+| 18       | Reverse Engineering | Reverse engineering results on Server B                     |
+
+To reproduce these results, see the following instructions:
+
+1. To reproduce reverse engineering results (Figure 2-7 and 17), follow [this instruction](./reproduce/ReverseEngineering.md).
+2. To reproduce covert channel results (Figure 9-10), follow [this instruction](./reproduce/CovertChannel.md)
+3. To reproduce side channel results (Figure 12-15), follow [this instruction](./reproduce/SideChannel.md)
+4. To reproduce the mitigation result (Figure 16), follow [this instruction](./reproduce/Mitigation.md)
