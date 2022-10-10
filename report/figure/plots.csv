@@ -1,24 +1,4 @@
-# Lines start with '#' are comments
-# This comment is not a standard csv feature
-# The comment is recognized by:
-#   - script/figure/configure.py:read_config
-#   - vscode extension rainbow-csv
-#   - vscode extension edit-csv
-# NOTE: do not use comma in comment to prevent highlight error in vscode
+target                           ,code                    ,data                               ,arg ,post_process ,type
+reference/fig2a-pointer-chasing  ,fig2a-pointer-chasing.R ,reference/fig2/pointer_chasing.csv ,    ,             ,tikz:tikz_pdf
 
-# Available options:
-#   - target (target file basename under figure/plot without leading path)
-#   - code   (source code file name under figure/src without leading path)
-#   - data   (data file name under data/ without leading path)
-#   - arg    (additional arguments for R scripts, no quotes required), e.g.:
-#            -a arg1 -b arg2
-#   - type   (multiple options are separated with colon)
-#     1. pdf      : source code -> pdf
-#     2. tikz     : source code -> tikz
-#     3. tikz_pdf : source code -> tikz -> pdf
-#     4. tikz_svg : source code -> tikz -> pdf -> svg
-#   - post_process (script name under script/figure/post_process), e.g.:
-#     1. tikz/heatmap_path_fix.sh
-#     2. pdf/pdf_to_png.sh
-target  ,code      ,data        ,arg ,post_process ,type
-example ,example.R ,example.csv ,    ,             ,tikz:tikz_pdf
+#reproduce/fig2a-pointer-chasing ,fig2a-pointer-chasing.R ,reproduce/fig2/pointer_chasing.csv ,    ,             ,tikz:tikz_pdf

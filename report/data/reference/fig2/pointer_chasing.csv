@@ -1,0 +1,2 @@
+task_name,region_size,block_size,count,total,average,cycle_write_start,cycle_read_start,cycle_read_end,fence_strategy,fence_freq
+pointer-chasing-64,64,64,8388608,3630625426,432,4385177151111378,4385180127968010,4385184757521846,mfence,region
