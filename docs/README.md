@@ -19,8 +19,8 @@ In the remaining doc, we use the following terms:
 
 ## Set up environments
 
-1. Set up the NVRAM Server environment following the [instructions](./SetUpNVRAM.md)
-2. Set up the Dev Server environment following the [instructions](./SetUpDev.md)
+1. Set up the NVRAM Server environment following the [instructions](./setup/NVRAMServer.md)
+2. Set up the Dev Server environment following the [instructions](./setup/DevServer.md)
 
 ## Run experiments on the NVRAM Server
 
