@@ -2,13 +2,15 @@
 
 Before running the experiments described in this document, you should first set up the NVRAM Server following [this instruction](../SetUpNVRAM.md).
 
-## Build NVLeak and set up the PMEM devices
+## Build NVLeak and LENS
 
 Install build dependencies if not already installed
 
 ```shell
 $ sudo apt install build-essential gcc linux-headers-$(uname -r)
 ```
+
+### Build NVLeak
 
 Build NVLeak with following commands
 
@@ -56,9 +58,15 @@ Available pointer chasing back and forth benchmarks:
 $ ./utils/umount.sh
 ```
 
-Then build the LENS following the above commands, the only difference is that instead of `NVLeak/nvleak`, this time navigate to `NVLeak/lens` to build results.
+### Build LENS
+
+Build the LENS following the above commands, the only difference is that instead of `NVLeak/nvleak`, this time navigate to `NVLeak/lens` to build results.
 
 ## Figure 2: Pointer chasing latencies and amplification factors
+
+To reproduce Figure 2, please run LENS experiments, instead of running NVLeak.
+
+> This is because NVLeak changes a few default behaviors in LENS and does not generate the Figure 2 results. We will update NVLeak to make it backward compatible.
 
 ### Figure 2a
 
