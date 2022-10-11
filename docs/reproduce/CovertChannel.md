@@ -115,7 +115,7 @@ $ vim ./scripts/nvleak/covert.sh # (Strongly recommended) edit the SlackURL and 
 $ ./scripts/nvleak/covert.sh all
 ```
 
-The full set of experiment takes ~8hours to run, so we strongly suggest you to enable the Slack notification to track the experiment progress.
+The full set of experiment takes ~8 hours to run, so we strongly suggest you to enable the Slack notification to track the experiment progress.
 
 Troubleshooting:
 
@@ -128,7 +128,7 @@ Troubleshooting:
 
 ### Collect Cross-VM Covert Channel Results and Generate Plots
 
-On your Dev Server, parse results (it can take 2 hours or even longer, depending on the performance of your Dev Server):
+On your Dev Server, parse results (it can take 4 hours or even longer, depending on the performance of your Dev Server):
 
 ```shell
 $ cd NVLeak/data
@@ -142,6 +142,17 @@ $ batch_root=covert_cross_vm/results/all \
     "${fig9_result}" \
     -m \
   ;
+
+# Now upload results to the MongoDB
+# If pymongo gives 'AuthenticationFailed' error, please follow the
+#   ../setup/DevServer.md to set up the MongoDB connection for parser scripts
+#   and then try again
+$ batch_root=covert_cross_vm/results/all \
+    ./parse.sh \
+    "${fig9_result}" \
+    -m \
+    -u \
+  ;
 ```
 
 Generate plots:
@@ -151,10 +162,11 @@ $ cd NVLeak/report/data/reproduce/fig9/
 # If pymongo gives 'AuthenticationFailed' error, please set up the MongoDB
 #   username and password for parser scripts, following ../setup/DevServer.md
 # Choose a single to visualize and set its dir name (i.e., it's job id) as fig9_signal
-#   you may browse the NVLeak/data/covert_cross_vm/results/all/${fig9_results} to choose one sub folder
-#   you may also check the 'results/config.json' under sub folders to identify the signal you need
-#   here we simply choose the first one in the folder
-$ fig9_signal=20221011032041-a380aef-nv-4
+#   browse the NVLeak/data/covert_cross_vm/results/all/${fig9_results} to choose one sub folder
+#   also check the 'results/config.json' under sub folders to identify the signal you need
+#   here we choose the 1606th job in the folder, using the following command:
+#     $ ls -1 | sed -n '1606p'
+$ fig9_signal=20221011060201-a380aef-nv-4
 $ bash ./fetch.sh "${fig9_result}" "${fig9_signal}"
 
 $ cd NVLeak/report/
@@ -162,4 +174,123 @@ $ sed -i 's/\#reproduce\/fig9b-covert-vm-summary/reproduce\/fig9b-covert-vm-summ
 $ sed -i 's/\#reproduce\/fig9c-covert-vm-signal-receiver/reproduce\/fig9c-covert-vm-signal-receiver /g' figure/plots.csv
 $ vim content/figure/9.tex # uncomment the 'reproduce' sub figures
 $ make # generate the report 'paper.pdf'
+```
+
+## Reproduce File System Inode Covert Channel
+
+### Configure the Optane DIMMs for FS Inode Channel
+
+This covert channel needs a different Optane DIMMs configuration compared to the cross-VM channel:
+
+```shell
+# Find and remove the current Optane DIMM namespaces 1.0 and 1.1
+$ ndctl list
+[
+  {
+    "dev":"namespace1.0",
+    "mode":"devdax",
+    "map":"dev",
+    "size":7516192768,
+    "uuid":"4abab6e2-1483-4337-b49f-35c22029c23f",
+    "chardev":"dax1.0",
+    "align":1073741824,
+    "name":"dax-sender"
+  },
+  {
+    "dev":"namespace1.1",
+    "mode":"devdax",
+    "map":"dev",
+    "size":7516192768,
+    "uuid":"96373c16-b70c-4a7b-825b-fe010b731029",
+    "chardev":"dax1.1",
+    "align":1073741824,
+    "name":"dax-receiver"
+  },
+  {
+    "dev":"namespace0.0",
+    "mode":"fsdax",
+    "map":"mem",
+    "size":34359738368,
+    "sector_size":512,
+    "blockdev":"pmem0"
+  }
+]
+$ sudo ndctl destroy-namespace -f namespace1.0
+$ sudo ndctl destroy-namespace -f namespace1.1
+
+# Set up Optane DIMMs
+$ cd NVLeak/nvleak
+$ sudo bash scripts/machine/optane.sh ndctl
+
+# Check and make sure there's only one pmem namespace, in 'fsdax' mode
+$ ndctl list -u
+[
+  {
+    "dev":"namespace1.0",
+    "mode":"fsdax",
+    "map":"dev",
+    "size":"124.03 GiB (133.18 GB)",
+    "uuid":"2472e860-7b9e-4f2f-a356-8c3697c87534",
+    "sector_size":512,
+    "align":2097152,
+    "blockdev":"pmem1"
+  },
+  {
+    "dev":"namespace0.0",
+    "mode":"fsdax",
+    "map":"mem",
+    "size":"32.00 GiB (34.36 GB)",
+    "sector_size":512,
+    "blockdev":"pmem0"
+  }
+]
+```
+
+### Build required packages
+
+This experiment requires e2fsprogs v1.46.4 or newer version. If this version is not provided by your Linux distro, then build it from source:
+
+```shell
+$ cd $HOME
+$ wget https://github.com/tytso/e2fsprogs/archive/refs/tags/v1.46.4.zip
+$ mv v1.46.4.zip e2fsprogs-1.46.4.zip
+$ unzip e2fsprogs-1.46.4.zip
+$ cd e2fsprogs-1.46.4
+$ mkdir -p build && cd build
+$ ../configure
+$ make -j $(nproc)
+
+# Check if the compiled tool works
+$ ./misc/mke2fs 
+Usage: mke2fs [-c|-l filename] [-b block-size] [-C cluster-size]
+        [-i bytes-per-inode] [-I inode-size] [-J journal-options]
+        [-G flex-group-size] [-N number-of-inodes] [-d root-directory]
+        [-m reserved-blocks-percentage] [-o creator-os]
+        [-g blocks-per-group] [-L volume-label] [-M last-mounted-directory]
+        [-O feature[,...]] [-r fs-revision] [-E extended-option[,...]]
+        [-t fs-type] [-T usage-type ] [-U UUID] [-e errors_behavior][-z undo_file]
+        [-jnqvDFSV] device [blocks-count]
+```
+
+### Set Up and Run the Inode Covert Channel
+
+```shell
+# Set up the filesystem
+$ sudo -i su
+$ cd /home/usenix/NVLeak/nvleak/user/covert_channel/inode
+$ bash mount.sh
+
+# Check if mount.sh works fine
+$ echo $?
+0
+$ mount -v | grep pmem
+/dev/pmem0 on /mnt/dram type ext4 (rw,relatime,dax)
+/dev/pmem1 on /mnt/pmem type ext4 (rw,relatime,dax)
+
+# Build the inode covert poc binary
+$ make
+
+# Run the covert channel on NVRAM and DRAM separately
+$ test_dev=pmem ./run.sh single
+$ test_dev=dram ./run.sh single
 ```

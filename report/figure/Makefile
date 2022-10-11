@@ -60,6 +60,23 @@ plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf: plot/reference/fig
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
+plot/reference/fig9b-covert-vm-summary.pdf: ../data/reference/fig9/data.json \
+                                            src/fig9b-covert-vm-summary.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
+
+
+plot/reference/fig9c-covert-vm-signal-receiver.tikz: ../data/reference/fig9/signal.json    \
+                                                     src/fig9c-covert-vm-signal-receiver.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 2
+
+
+plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf: plot/reference/fig9c-covert-vm-signal-receiver.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -71,7 +88,8 @@ all: all_tikz     \
 .PHONY:  all_pdf
 all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf     \
          plot/reference/fig5a-overwrite-iter-lat.pdf         \
-         plot/reference/fig6-overwrite-delay-p99-latency.pdf
+         plot/reference/fig6-overwrite-delay-p99-latency.pdf \
+         plot/reference/fig9b-covert-vm-summary.pdf
 
 .PHONY: all_png
 all_png: 
@@ -79,12 +97,14 @@ all_png:
 .PHONY:   all_tikz
 all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
           plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
-          plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
+          plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
+          plot/reference/fig9c-covert-vm-signal-receiver.tikz
 
 .PHONY:       all_tikz_pdf
 all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
               plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf \
-              plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf
+              plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf     \
+              plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -108,7 +128,8 @@ out/plots.pdf: plots.tex                                                    \
                figure                                                       \
                plot/reference/fig2a-pointer-chasing.tikz                    \
                plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
-               plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
+               plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
+               plot/reference/fig9c-covert-vm-signal-receiver.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -122,13 +143,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf
 
 
 .PHONY: clean_tikz_svg
@@ -138,7 +159,7 @@ clean_tikz_svg:
 
 .PHONY: clean_pdf
 clean_pdf: 
-	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf plot/reference/fig5a-overwrite-iter-lat.pdf plot/reference/fig6-overwrite-delay-p99-latency.pdf
+	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf plot/reference/fig5a-overwrite-iter-lat.pdf plot/reference/fig6-overwrite-delay-p99-latency.pdf plot/reference/fig9b-covert-vm-summary.pdf
 
 .PHONY: clean_png
 clean_png: 
