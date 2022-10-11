@@ -183,8 +183,34 @@
     \acmSubmissionID{XXX}
     \renewcommand\footnotetextcopyrightpermission[1]{}
 }
+\newcommand{\usenixreport}
+{
+    \LoadClass[letterpaper,10pt]{article}
+    \usepackage[letterpaper, total={7in, 9in}]{geometry}
+    \usepackage{cite}               % order multiple entries in \cite{...}
+    \usepackage{breakurl}           % break too-long urls in refs
+    \usepackage{url}                % allow \url in bibtex for clickable links
+    \usepackage[table]{xcolor}      % color definitions, to be use for...
+    \usepackage[]{hyperref}         % ...clickable refs within pdf...
+    \hypersetup{                    % ...like so
+    colorlinks,
+    linkcolor={green!80!black},
+    citecolor={red!70!black},
+    urlcolor={blue!70!black}
+    }
+    % Bib
+    \newcommand{\napaperbib}{
+        \bibliographystyle{plainurl}
+        \bibliography{content/ref.bib}
+    }
+    % Page style
+    \newcommand{\napaperpagestyle}{
+        \thispagestyle{empty} % Camera ready style
+        \pagestyle{empty}     % Camera ready style
+    }
+}
 
-\confusenix{}
+\usenixreport{}
 
 %==================%
 % General settings %
@@ -215,6 +241,7 @@
 \usepackage{ctable}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
+
 % https://tex.stackexchange.com/a/44199
 % \usepackage{picins}
 
