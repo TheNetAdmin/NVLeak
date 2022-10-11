@@ -91,7 +91,7 @@ $ ndctl list -u
 ]
 ```
 
-### Build the Cross-VM Covert Channel
+### Build and Run the Cross-VM Covert Channel
 
 ```shell
 $ cd NVLeak/nvleak/user/covert_channel/cross_vm
@@ -108,6 +108,9 @@ $ git config --global --add safe.directory /home/usenix/NVLeak/nvleak/user/cover
 #   the following troubleshooting steps for solutions
 $ cd /home/usenix/NVLeak/nvleak/user/covert_channel/cross_vm
 $ ./scripts/nvleak/covert.sh debug_single
+
+# If the above single test works fine, run the following line to run the full experiment
+$ ./scripts/nvleak/covert.sh all
 ```
 
 Troubleshooting:
