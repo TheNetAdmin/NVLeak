@@ -1,3 +1,4 @@
+from importlib.metadata import requires
 from pymongo import MongoClient
 import logging
 import click
@@ -40,7 +41,7 @@ def data():
 @click.argument("task_id")
 def pull(task_id):
     all_res = []
-    all_tasks = [task_id]  # In the format like "tasks-04-15-2022-216-0-nv-4"
+    all_tasks = [task_id]  # In the format like "tasks-04-20-2022-107-0-nv-4"
     db = make_mongodb("data:experiment_result")
     for task in all_tasks:
         print(f"Querying: {task}")
@@ -50,7 +51,6 @@ def pull(task_id):
                 "task": 1,
                 "batch_id": 1,
                 "result": 1,
-                "repeat_cnt": "$task.repeat",
             },
         )
         task_res = [t for t in task_res]
@@ -64,25 +64,13 @@ def pull(task_id):
 
 @data.command()
 def parse():
-    df = pd.read_json("data_raw.json")
-
-    def parse_row(x):
-        num_cl = x["result"]["region_size"] / 64
-        x["result"]["ld_lat_per_cl"] = np.average(
-            [v for k, v in x["result"]["per_repeat"].items() if k.startswith("lat_ld_")]
-        ) / (num_cl)
-        x["result"]["st_lat_per_cl"] = np.average(
-            [v for k, v in x["result"]["per_repeat"].items() if k.startswith("lat_st_")]
-        ) / (num_cl)
-        x["result"]["total_pc_blocks"] = (
-            x["result"]["region_size"] / x["result"]["block_size"]
-        )
-        return x
-
-    df.apply(parse_row, axis=1)
-    jdf = json.loads(df.to_json(orient="records"))
+    df_raw = pd.read_json("data_raw.json")
+    df = []
+    for _, row in df_raw.iterrows():
+        df.append(row["result"] | row["task"])
+    # jdf = json.loads(df)
     with open("data.json", "w") as f:
-        json.dump(jdf, f, indent=4)
+        json.dump(df, f, indent=4)
 
 
 if __name__ == "__main__":

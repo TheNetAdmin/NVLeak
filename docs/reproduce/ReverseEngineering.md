@@ -375,4 +375,42 @@ Before proceeding with the following sections, first set up your Dev Server with
    $ cp ${fig5_data_path}/overwrite_256_filtered.csv .
 
    $ cd NVLeak/report
+   $ sed -i 's/\#reproduce\/fig5a-overwrite-iter-lat/reproduce\/fig5a-overwrite-iter-lat /g' figure/plots.csv
+   $ vim content/figure/5.tex # uncomment the 'reproduce' sub figure
+   $ make # generate the report 'paper.pdf'
+   ```
+
+### Figure 5b & 6
+
+Figure 5b and 6 use the same result, from task 107 (original version) or 111 (simplified version). Assuming task 111 is used:
+
+1. Fetch result data from NVRAM Server to Dev Server, assuming the results are under `NVLeak/data/nvleak/results/tasks-10-10-2022-111-0-nv-4`
+2. Parse the result
+
+   ```shell
+   $ cd NVLeak/data/
+   $ fig5b6_result="tasks-10-10-2022-111-0-nv-4"
+   # Parse the results and store them locally, not yet upload to the MongoDB
+   $ bash ./parse.sh "${fig5b6_result}"
+   # Now upload results to the MongoDB
+   # If pymongo gives 'AuthenticationFailed' error, please follow the
+   #   ../setup/DevServer.md to set up the MongoDB connection for parser scripts
+   #   and then try again
+   $ bash ./parse.sh "${fig5b6_result}" -u
+   ```
+
+3. Generate plots
+
+   ```shell
+   $ cd NVLeak/report/data/reproduce/fig6/
+   # If pymongo gives 'AuthenticationFailed' error, please set up the MongoDB
+   #   username and password for parser scripts, following ../setup/DevServer.md
+   $ bash ./fetch.sh "${fig5b6_result}"
+
+   $ cd NVLeak/report/
+   $ sed -i 's/\#reproduce\/fig5b-overwrite-delay-p99-latency-sample/reproduce\/fig5b-overwrite-delay-p99-latency-sample /g' figure/plots.csv
+   $ sed -i 's/\#reproduce\/fig6-overwrite-delay-p99-latency/reproduce\/fig6-overwrite-delay-p99-latency /g' figure/plots.csv
+   $ vim content/figure/5.tex # uncomment the 'reproduce' sub figure 5b
+   $ vim content/figure/6.tex # uncomment the 'reproduce' sub figure 6
+   $ make # generate the report 'paper.pdf'
    ```

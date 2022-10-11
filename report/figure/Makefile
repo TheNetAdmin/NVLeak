@@ -31,6 +31,24 @@ plot/reference/fig5a-overwrite-iter-lat.pdf: ../data/reference/fig5/overwrite_25
 	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
 
 
+plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz: ../data/reference/fig6/data.json               \
+                                                              src/fig5b-overwrite-delay-p99-latency-sample.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz 
+	@bash ../script/figure/post_process/tikz/heatmap_path_fix.sh $@
+
+
+plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf: plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
+plot/reference/fig6-overwrite-delay-p99-latency.pdf: ../data/reference/fig6/data.json       \
+                                                     src/fig6-overwrite-delay-p99-latency.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -40,17 +58,20 @@ all: all_tikz     \
      all_pdf_svg
 
 .PHONY:  all_pdf
-all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf \
-         plot/reference/fig5a-overwrite-iter-lat.pdf
+all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf     \
+         plot/reference/fig5a-overwrite-iter-lat.pdf         \
+         plot/reference/fig6-overwrite-delay-p99-latency.pdf
 
 .PHONY: all_png
 all_png: 
 
 .PHONY:   all_tikz
-all_tikz: plot/reference/fig2a-pointer-chasing.tikz
+all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
+          plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
 
 .PHONY:       all_tikz_pdf
-all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf
+all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
+              plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -69,10 +90,11 @@ figure:
 .PHONY:      tikz_to_pdf
 tikz_to_pdf: out/plots.pdf
 
-out/plots.pdf: plots.tex                                 \
-               config                                    \
-               figure                                    \
-               plot/reference/fig2a-pointer-chasing.tikz
+out/plots.pdf: plots.tex                                                    \
+               config                                                       \
+               figure                                                       \
+               plot/reference/fig2a-pointer-chasing.tikz                    \
+               plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -86,13 +108,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf
 
 
 .PHONY: clean_tikz_svg
@@ -102,7 +124,7 @@ clean_tikz_svg:
 
 .PHONY: clean_pdf
 clean_pdf: 
-	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf plot/reference/fig5a-overwrite-iter-lat.pdf
+	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf plot/reference/fig5a-overwrite-iter-lat.pdf plot/reference/fig6-overwrite-delay-p99-latency.pdf
 
 .PHONY: clean_png
 clean_png: 

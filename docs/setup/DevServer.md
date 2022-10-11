@@ -33,5 +33,5 @@ You may use the Docker compose file to set up the MongoDB:
 1. Install the following python packages
 
    ```shell
-   $ pip3 install click editdistance numpyencoder pandas pymongo
+   $ pip3 install click editdistance numpyencoder pandas pymongo numpy
    ```
