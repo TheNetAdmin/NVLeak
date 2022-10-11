@@ -49,6 +49,17 @@ plot/reference/fig6-overwrite-delay-p99-latency.pdf: ../data/reference/fig6/data
 	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
 
 
+plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz: ../data/reference/fig7/data.json           \
+                                                          src/fig7-wear-leveling-trigger-100k-dist.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -c 100000
+
+
+plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf: plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -67,11 +78,13 @@ all_png:
 
 .PHONY:   all_tikz
 all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
-          plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
+          plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
+          plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
 
 .PHONY:       all_tikz_pdf
 all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
-              plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf
+              plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf \
+              plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -94,7 +107,8 @@ out/plots.pdf: plots.tex                                                    \
                config                                                       \
                figure                                                       \
                plot/reference/fig2a-pointer-chasing.tikz                    \
-               plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
+               plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
+               plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -108,13 +122,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf
 
 
 .PHONY: clean_tikz_svg

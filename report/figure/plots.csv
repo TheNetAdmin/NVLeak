@@ -1,14 +1,14 @@
-target                                              ,code                                       ,data                                      ,arg  ,post_process             ,type
-reference/fig2a-pointer-chasing                     ,fig2a-pointer-chasing.R                    ,reference/fig2/pointer_chasing.csv        ,     ,                         ,tikz:tikz_pdf
-reference/fig4-pointer-chasing-heatmap              ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                  ,-a 1 ,                         ,pdf
-reference/fig5a-overwrite-iter-lat                  ,fig5a-overwrite-iter-lat.R                 ,reference/fig5/overwrite_256_filtered.csv ,     ,                         ,pdf
-reference/fig5b-overwrite-delay-p99-latency-sample  ,fig5b-overwrite-delay-p99-latency-sample.R ,reference/fig6/data.json                  ,     ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
-reference/fig6-overwrite-delay-p99-latency          ,fig6-overwrite-delay-p99-latency.R         ,reference/fig6/data.json                  ,     , ,pdf
+target                                              ,code                                       ,data                                      ,arg       ,post_process             ,type
+reference/fig2a-pointer-chasing                     ,fig2a-pointer-chasing.R                    ,reference/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
+reference/fig4-pointer-chasing-heatmap              ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                  ,-a 1      ,                         ,pdf
+reference/fig5a-overwrite-iter-lat                  ,fig5a-overwrite-iter-lat.R                 ,reference/fig5/overwrite_256_filtered.csv ,          ,                         ,pdf
+reference/fig5b-overwrite-delay-p99-latency-sample  ,fig5b-overwrite-delay-p99-latency-sample.R ,reference/fig6/data.json                  ,          ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
+reference/fig6-overwrite-delay-p99-latency          ,fig6-overwrite-delay-p99-latency.R         ,reference/fig6/data.json                  ,          ,                         ,pdf
+reference/fig7-wear-leveling-trigger-100k-dist      ,fig7-wear-leveling-trigger-100k-dist.R     ,reference/fig7/data.json                  ,-c 100000 ,                         ,tikz:tikz_pdf
 
-
-#reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,     ,                         ,tikz:tikz_pdf
-#reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                  ,-a 1 ,                         ,pdf
-#reproduce/fig5a-overwrite-iter-lat                 ,fig5a-overwrite-iter-lat.R                 ,reference/fig5/overwrite_256_filtered.csv ,     ,                         ,pdf
-#reproduce/fig5b-overwrite-delay-p99-latency-sample ,fig5b-overwrite-delay-p99-latency-sample.R ,reference/fig6/data.json                  ,     ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
-#reproduce/fig6-overwrite-delay-p99-latency         ,fig6-overwrite-delay-p99-latency.R         ,reference/fig6/data.json                  ,     , ,pdf
-
+#reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
+#reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                  ,-a 1      ,                         ,pdf
+#reproduce/fig5a-overwrite-iter-lat                 ,fig5a-overwrite-iter-lat.R                 ,reference/fig5/overwrite_256_filtered.csv ,          ,                         ,pdf
+#reproduce/fig5b-overwrite-delay-p99-latency-sample ,fig5b-overwrite-delay-p99-latency-sample.R ,reference/fig6/data.json                  ,          ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
+#reproduce/fig6-overwrite-delay-p99-latency         ,fig6-overwrite-delay-p99-latency.R         ,reference/fig6/data.json                  ,          ,                         ,pdf
+#reproduce/fig7-wear-leveling-trigger-100k-dist     ,fig7-wear-leveling-trigger-100k-dist.R     ,reference/fig7/data.json                  ,-c 100000 ,                         ,tikz:tikz_pdf

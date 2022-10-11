@@ -414,3 +414,34 @@ Figure 5b and 6 use the same result, from task 107 (original version) or 111 (si
    $ vim content/figure/6.tex # uncomment the 'reproduce' sub figure 6
    $ make # generate the report 'paper.pdf'
    ```
+
+### Figure 7
+
+1. Fetch result data from NVRAM Server to Dev Server, assuming the results are under `NVLeak/data/nvleak/results/tasks-10-10-2022-110-0-nv-4`
+2. Parse the result
+
+   ```shell
+   $ cd NVLeak/data/
+   $ fig7_result="tasks-10-10-2022-110-0-nv-4"
+   # Parse the results and store them locally, not yet upload to the MongoDB
+   $ bash ./parse.sh "${fig7_result}"
+   # Now upload results to the MongoDB
+   # If pymongo gives 'AuthenticationFailed' error, please follow the
+   #   ../setup/DevServer.md to set up the MongoDB connection for parser scripts
+   #   and then try again
+   $ bash ./parse.sh "${fig7_result}" -u
+   ```
+
+3. Generate plots
+
+   ```shell
+   $ cd NVLeak/report/data/reproduce/fig6/
+   # If pymongo gives 'AuthenticationFailed' error, please set up the MongoDB
+   #   username and password for parser scripts, following ../setup/DevServer.md
+   $ bash ./fetch.sh "${fig7_result}"
+
+   $ cd NVLeak/report/
+   $ sed -i 's/\#reproduce\/fig7-wear-leveling-trigger-100k-dist/reproduce\/fig7-wear-leveling-trigger-100k-dist /g' figure/plots.csv
+   $ vim content/figure/7.tex # uncomment the 'reproduce' sub figure
+   $ make # generate the report 'paper.pdf'
+   ```
