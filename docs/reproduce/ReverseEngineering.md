@@ -1,6 +1,6 @@
 # Reproduce Reverse Engineering Results
 
-Before running the experiments described in this document, you should first set up the NVRAM Server following [this instruction](../SetUpNVRAM.md).
+Before running the experiments described in this document, you should first set up the NVRAM Server following [this instruction](../setup/NVRAMServer.md).
 
 ## Build NVLeak and LENS
 
