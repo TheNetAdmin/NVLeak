@@ -341,3 +341,17 @@ Before proceeding with the following sections, first set up your Dev Server with
    #   and then try again
    $ bash ./parse.sh "${fig4_result}" -u
    ```
+
+3. Fetch data and generate plots
+
+   ```shell
+   $ cd NVLeak/report/data/reproduce/fig4/
+   # If pymongo gives 'AuthenticationFailed' error, please set up the MongoDB
+   #   username and password for parser scripts, following ../setup/DevServer.md
+   $ bash ./fetch.sh "${fig4_result}"
+
+   $ cd NVLeak/report/
+   $ sed -i 's/\#reproduce\/fig4-pointer-chasing-heatmap/reproduce\/fig4-pointer-chasing-heatmap /g' figure/plots.csv
+   $ vim content/figure/4.tex # uncomment the 'reproduce' sub figure
+   $ make # generate the report 'paper.pdf'
+   ```

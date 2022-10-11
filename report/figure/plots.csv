@@ -1,4 +1,6 @@
-target                           ,code                    ,data                               ,arg ,post_process ,type
-reference/fig2a-pointer-chasing  ,fig2a-pointer-chasing.R ,reference/fig2/pointer_chasing.csv ,    ,             ,tikz:tikz_pdf
+target                                  ,code                           ,data                               ,arg  ,post_process ,type
+reference/fig2a-pointer-chasing         ,fig2a-pointer-chasing.R        ,reference/fig2/pointer_chasing.csv ,     ,             ,tikz:tikz_pdf
+reference/fig4-pointer-chasing-heatmap  ,fig4-pointer-chasing-heatmap.R ,reference/fig4/data.json           ,-a 1 ,             ,pdf
 
-#reproduce/fig2a-pointer-chasing ,fig2a-pointer-chasing.R ,reproduce/fig2/pointer_chasing.csv ,    ,             ,tikz:tikz_pdf
+#reproduce/fig2a-pointer-chasing        ,fig2a-pointer-chasing.R        ,reproduce/fig2/pointer_chasing.csv ,     ,             ,tikz:tikz_pdf
+#reference/fig4-pointer-chasing-heatmap ,fig4-pointer-chasing-heatmap.R ,reference/fig4/data.json           ,-a 1 ,             ,pdf

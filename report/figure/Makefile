@@ -19,6 +19,12 @@ plot/reference/fig2a-pointer-chasing.tikz.pdf: plot/reference/fig2a-pointer-chas
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
+plot/reference/fig4-pointer-chasing-heatmap.pdf: ../data/reference/fig4/data.json   \
+                                                 src/fig4-pointer-chasing-heatmap.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf -a 1
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -27,8 +33,8 @@ all: all_tikz     \
      all_tikz_svg \
      all_pdf_svg
 
-.PHONY: all_pdf
-all_pdf: 
+.PHONY:  all_pdf
+all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf
 
 .PHONY: all_png
 all_png: 
@@ -89,7 +95,7 @@ clean_tikz_svg:
 
 .PHONY: clean_pdf
 clean_pdf: 
-	rm -f 
+	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf
 
 .PHONY: clean_png
 clean_png: 

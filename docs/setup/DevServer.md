@@ -18,7 +18,15 @@ You may use the Docker compose file to set up the MongoDB:
    ```
 
 4. (Optional) If you'd like to browse the MongoDB for maintenance or updates, you may try JetBrains DataGrip or other GUI tools.
-5. Update the parser script `NVLeak/scripts/parse/radar/utils.py` with MongoDB connection info (username, password, URL, and port).
+5. Set up MongoDB connection for Python scripts, choose one approach from below:
+   1. Set shell environment variable `MONGODB_USERNAME` and `MONGODB_PASSWORD`, so that `NVLeak/scripts/parse/radar/utils.py` can read them
+
+      ```shell
+      $ export MONGODB_USERNAME=***
+      $ export MONGODB_PASSWORD=***
+      ```
+
+   2. Update the parser script `NVLeak/scripts/parse/radar/utils.py` with MongoDB connection info (username, password, URL, and port).
 
 ## Install Required Packages
 
