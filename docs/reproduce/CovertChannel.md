@@ -104,6 +104,7 @@ $ sudo -i su
 $ bash /home/usenix/NVLeak/nvleak/scripts/machine/smt.sh
 # You may need this line to configure git for the repo
 $ git config --global --add safe.directory /home/usenix/NVLeak/nvleak/user/covert_channel/cross_vm
+
 # Run a sample covert channel, if it stucks for more than a few seconds, see
 #   the following troubleshooting steps for solutions
 $ cd /home/usenix/NVLeak/nvleak/user/covert_channel/cross_vm
@@ -118,6 +119,17 @@ Troubleshooting:
 1. Failed to set CPU scaling governor to performance mode:
    1. Reboot the machine into BIOS, disable HyperThreading and retry.
    2. This is because when disabling SMT using the script, the CPUs can get unexpected IDs under `/sys/`, which affects the runner script to set their scaling governor.
-2. The `covert.sh` stucks:
+2. The `covert.sh` stuck:
    1. Check the output under `results/debug_single/<job_id>/<sub_job_id>/*.log` for more info
    2. Typically you'd need to update the QEMU path defined in `scripts/nvleak/qemu_nvram.sh`
+
+### Collect Cross-VM Covert Channel Results and Generate Plots
+
+On your Dev Server:
+
+```shell
+$ cd NVLeak/data
+$ bash copy.sh # Or manually copy the results from NVRAM Server to Dev Server
+# Assuming the job folder name is ""
+$ export fig9_result=""
+```
