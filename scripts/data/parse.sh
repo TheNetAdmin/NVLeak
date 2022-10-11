@@ -9,7 +9,8 @@ help() {
     echo "-h      print this help message."
     echo "-c      clean before each parse."
     echo "-u      update after each parse."
-    echo "-q      quite, no slack message."
+    echo "-s      send progress to slack."
+    echo "-m      parse cross-VM covert channel results."
 }
 
 if [ $# -eq 0 ] ; then
@@ -21,8 +22,9 @@ fi
 make_jobs=${make_jobs:-8}
 id=$1
 shift 1
+slack=n
 
-while getopts ":hcuqm" option; do
+while getopts ":hcusm" option; do
     case $option in
         h)
             help
@@ -34,8 +36,8 @@ while getopts ":hcuqm" option; do
         u)
             update=y
             ;;
-        q)
-            quiet=y
+        s)
+            slack=y
             ;;
         m)
             cross_vm_covert=y
@@ -48,11 +50,7 @@ while getopts ":hcuqm" option; do
     esac
 done
 
-if test "${quiet}" = "y"; then
-    function slack_notice() {
-        echo "$*"
-    }
-else
+if test "${slack}" = "y"; then
     SlackURL="" # Fill with your Slack incoming webhook URL
     if [ -z "$SlackURL" ]; then
         echo "ERROR: Please fill the SlackURL in [$0]"
@@ -66,11 +64,15 @@ else
         curl -X POST -H 'Content-type: application/json' --data "{'text':'$1'}" "$SlackURL" >/dev/null 2>&1
         echo ""
     }
+else
+    function slack_notice() {
+        echo "$*"
+    }
 fi
 
 batch_root="${batch_root:-nvleak/results}"
 batch_path="${batch_root}/${id}"
-parse="../script/parse/parse.py"
+parse="../scripts/parse/parse.py"
 
 slack_notice "\`[Start    ]\` Parsing results ${batch_path}"
 

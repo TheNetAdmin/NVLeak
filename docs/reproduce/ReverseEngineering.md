@@ -325,3 +325,19 @@ NVLeak comes with a set of scripts to parse these results, stores them in the Mo
 
 Before proceeding with the following sections, first set up your Dev Server with the required MongoDB and other environemtns, following [this instruction](../setup/DevServer.md).
 
+### Figure 4
+
+1. Fetch result data from NVRAM Server to Dev Server, assuming the results are under `NVLeak/data/nvleak/results/tasks-10-10-2022-228-0-nv-4`
+2. Parse the results and upload to MongoDB
+
+   ```shell
+   $ cd NVLeak/data
+   $ fig4_result="tasks-10-10-2022-228-0-nv-4"
+   # Parse the results and store them locally, not yet upload to the MongoDB
+   $ bash ./parse.sh "${fig4_result}"
+   # Now upload results to the MongoDB
+   # If pymongo gives 'AuthenticationFailed' error, please follow the
+   #   ../setup/DevServer.md to set up the MongoDB connection for parser scripts
+   #   and then try again
+   $ bash ./parse.sh "${fig4_result}" -u
+   ```
