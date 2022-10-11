@@ -60,9 +60,9 @@ $ ./utils/umount.sh
 
 ### Build LENS
 
-Build the LENS following the above commands, the only difference is that instead of `NVLeak/nvleak`, this time navigate to `NVLeak/lens` to build results.
+Build the LENS following the above commands, the only difference is that instead of going to `NVLeak/nvleak` dir, this time navigate to `NVLeak/lens` folder to build results.
 
-## Figure 2: Pointer chasing latencies and amplification factors
+## Figure 2: Reverse Engineering Results with LENS
 
 To reproduce Figure 2, please run LENS experiments, instead of running NVLeak.
 
@@ -197,4 +197,99 @@ To reproduce Figure 2, please run LENS experiments, instead of running NVLeak.
 
    # Generate the updated report `paper.pdf` and compare the plots
    $ make
+   ```
+
+## Figure 4-7: Reverse Engineering Results with NVLeak
+
+Figure 4 to 7 present reverse engineering results given by NVLeak. To reproduce these results, NVLeak provides a set of scripts to run multiple experiments with a single command, and report experiment progress to Slack, so you don't have to manually monitor the experiment progress.
+
+All NVLeak experiments are available as *batch jobs* where each job is a script under `NVLeak/nvleak/scripts/batch/`, with a file name in the format `<three digit job ID>_<short job description>.sh`. If you are developing new jobs, make sure the job ID is always unique as it's used by NVLeak to find and run corresponding job.
+
+### Run NVLeak Jobs
+
+NVLeak provides a script `NVLeak/nvleak/scripts/batch/batch_run.sh` to run arbitrary number of jobs, e.g.:
+
+```shell
+$ sudo -i su
+$ cd NVLeak/nvleak/scripts/batch/
+# Run job 001 and then 110, which correspond to following scripts:
+#   - 001_setup_mtrr.sh
+#   - 110_warm_up_repeat_by_range.sh
+$ ./batch_run.sh all 001 110
+```
+
+The `batch_run.sh` script defines common environment variables, checks machines states (e.g., if SMT is turned off), sets up the machine into desired states (e.g., turn off the CPU cache hardware prefetcher if necessary), runs each job and redirects their output to corresponding folders.
+
+**Job Mode:** Each job script should support at least one argument to specify the job mode, and at least one mode as `all` which tells the job script to run the full set of experiments. Alternatively, a job can support a `debug` mode to run a subset of experiments for debugging purpose, and any other customized job modes.
+
+The `batch_run.sh` takes the first argument as job modes and pass it to each job script. E.g., the above example sets all jobs in the `all` mode.
+
+### NVLeak Jobs for Figure 4-7
+
+NVLeak provide *simplified* versions of a few experiments that reduce the number of configures and thus make it faster to get the major results. You may choose to run *original* versions with the full configurations presented in the main paper, but those experiments may take many hours or even days to run.
+
+Here we provide a list of experiments and their estimated time to run:
+
+| Figure #      | Job ID | Version    | Estimated Time to Run |
+| :------------ | :----- | :--------- | :-------------------- |
+| Figure 4      | 216    | Original   | ~                     |
+| Figure 4      | 228    | Simplified | 20 mins               |
+| Figure 5a     | ~      | ~          | ~                     |
+| Figure 5b & 6 | 107    | Original   | ~                     |
+| Figure 5b & 6 | 111    | Simplified | 3 hours               |
+| Figure 7      | 110    | Original   | 1 hour                |
+
+### Set Up Slack Notifications
+
+When running these jobs, the CPU hardware interrupts are turned off which make it hard to ssh into the machine while the jobs are running. NVLeak provides Slack notifications that sends current experiment progress to the Slack channel of yours. An example output is
+
+```log
+4:05 [Start   ] [nv-4] 228_pc_strided_flush_L1_uncached_simplified.sh
+       [FenceStrategy=0]
+       [FenceFreq=1]
+       [FlushAfterLoad=1]
+       [Repeat=32]
+       [PerRepeatTiming=1]
+       [SubOP=0]
+       [RegionAlign=4096]
+       [EstHours=1.10 (.39 - 1.58))]
+       [EstPerCheckpoint=.07 (.02 - .10)]
+4:07 [Progress] [nv-4] 6.66% [1 / 15]
+4:08 [Progress] [nv-4] 13.33% [2 / 15]
+4:10 [Progress] [nv-4] 20.00% [3 / 15]
+4:11 [Progress] [nv-4] 26.66% [4 / 15]
+4:13 [Progress] [nv-4] 33.33% [5 / 15]
+4:14 [Progress] [nv-4] 40.00% [6 / 15]
+4:15 [Progress] [nv-4] 46.66% [7 / 15]
+4:17 [Progress] [nv-4] 53.33% [8 / 15]
+4:18 [Progress] [nv-4] 60.00% [9 / 15]
+4:20 [Progress] [nv-4] 66.66% [10 / 15]
+4:21 [Progress] [nv-4] 73.33% [11 / 15]
+4:22 [Progress] [nv-4] 80.00% [12 / 15]
+4:24 [Progress] [nv-4] 86.66% [13 / 15]
+4:25 [Progress] [nv-4] 93.33% [14 / 15]
+4:26 [Progress] [nv-4] 100.00% [15 / 15]
+4:26 [End     ] [nv-4] 228_pc_strided_flush_L1_uncached_simplified.sh
+4:26 [Finish  ] @UserName check results
+```
+
+The Slack notification is turned off by default, but we strongly recommend you to turn it on, so you can track the experiment progress without having to log in to the machine.
+
+To configure the NVLeak Slack notification:
+
+1. In your Slack channel, add an app `Incoming Webhook` and get the webhook URL, which looks like `https://hooks.slack.com/services/***/***/******`
+   > We'd suggest you to create a new Slack workspace if your current Slack workspace is at free tier, because these experiment notifications can easily burn out your free tier message history limit.
+2. Modify the `default_config.sh` script to turn on the Slack notification
+
+   ```shell
+   $ vim NVLeak/nvleak/scripts/batch/default_config.sh
+   # Update the Slack-related fields
+
+   $ git diff
+   -export Slack=0
+   -export SlackURL=""
+   -export SlackUserID=""
+   +export Slack=1
+   +export SlackURL=https://hooks.slack.com/services/***/***/*******
+   +export SlackUserID="" # Optional: your Slack user ID (not your user name) which starts with '@U'
    ```
