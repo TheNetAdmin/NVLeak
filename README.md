@@ -2,9 +2,11 @@
 
 This repo contains artifacts for our USENIX Security '23 paper *NVLeak: Off-Chip Side-Channel Attacks via Non-Volatile Memory Systems*.
 
-> The artifacts will be updated soon.
+## Use NVLeak
 
-## Cite our paper
+See more detailed [docs](./docs/README.md) to use NVLeak and reproduce results.
+
+## Cite NVLeak
 
 ``` BibTeX
 @inproceedings{Wang2023NVLeak,
