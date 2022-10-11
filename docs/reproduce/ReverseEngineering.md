@@ -224,24 +224,9 @@ The `batch_run.sh` script defines common environment variables, checks machines 
 
 The `batch_run.sh` takes the first argument as job modes and pass it to each job script. E.g., the above example sets all jobs in the `all` mode.
 
-### NVLeak Jobs for Figure 4-7
-
-NVLeak provide *simplified* versions of a few experiments that reduce the number of configures and thus make it faster to get the major results. You may choose to run *original* versions with the full configurations presented in the main paper, but those experiments may take many hours or even days to run.
-
-Here we provide a list of experiments and their estimated time to run:
-
-| Figure #      | Job ID | Version    | Estimated Time to Run |
-| :------------ | :----- | :--------- | :-------------------- |
-| Figure 4      | 216    | Original   | ~                     |
-| Figure 4      | 228    | Simplified | 20 mins               |
-| Figure 5a     | ~      | ~          | ~                     |
-| Figure 5b & 6 | 107    | Original   | ~                     |
-| Figure 5b & 6 | 111    | Simplified | 3 hours               |
-| Figure 7      | 110    | Original   | 1 hour                |
-
 ### Set Up Slack Notifications
 
-When running these jobs, the CPU hardware interrupts are turned off which make it hard to ssh into the machine while the jobs are running. NVLeak provides Slack notifications that sends current experiment progress to the Slack channel of yours. An example output is
+When running NVLeak jobs, CPU hardware interrupts are turned off which make it hard to ssh into the machine while the jobs are running. NVLeak provides Slack notifications that sends current experiment progress to the Slack channel of yours. An example output is
 
 ```log
 4:05 [Start   ] [nv-4] 228_pc_strided_flush_L1_uncached_simplified.sh
@@ -293,3 +278,50 @@ To configure the NVLeak Slack notification:
    +export SlackURL=https://hooks.slack.com/services/***/***/*******
    +export SlackUserID="" # Optional: your Slack user ID (not your user name) which starts with '@U'
    ```
+
+### NVLeak Jobs for Figure 4-7
+
+NVLeak provide *simplified* versions of a few experiments that reduce the number of configures and thus make it faster to get the major results. You may choose to run *original* versions with the full configurations presented in the main paper, but those experiments may take many hours or even days to run.
+
+Here we provide a list of experiments and their estimated time to run:
+
+| Figure #      | Job ID | Version    | Estimated Time to Run |
+| :------------ | :----- | :--------- | :-------------------- |
+| Figure 4      | 216    | Original   | ~                     |
+| Figure 4      | 228    | Simplified | 20 mins               |
+| Figure 5a     | 112    | Original   | 1 min                 |
+| Figure 5b & 6 | 107    | Original   | ~                     |
+| Figure 5b & 6 | 111    | Simplified | 3 hours               |
+| Figure 7      | 110    | Original   | 1 hour                |
+
+> We suggest to set up the Slack (see the prior section) and test if it works fine with a quick job by `bash batch_run.sh all 001` and check if notification messages are sent to the Slack channel
+
+To run these experiments all together:
+
+```shell
+# Experiments take 4~5 hours to run, so run them in tmux in case ssh is disconnected
+$ tmux
+$ sudo -i su
+$ cd /home/usenix/NVLeak/nvleak/scripts/batch
+$ bash batch_run.sh all 001 228 112 110 111
+```
+
+The final results are under `NVLeak/nvleak/results`, with job ID and job start time in folder names:
+
+```shell
+$ ls -1 NVLeak/nvleak/results
+tasks-10-10-2022-001-0-nv-4
+tasks-10-10-2022-110-0-nv-4
+tasks-10-10-2022-111-0-nv-4
+tasks-10-10-2022-112-0-nv-4
+tasks-10-10-2022-228-0-nv-4
+```
+
+Copy these results to your Dev Server for data parsing and plot generation.
+
+### Set Up Data Parsing Environment
+
+NVLeak comes with a set of scripts to parse these results, stores them in the MongoDB, and then extract useful data for plot generation.
+
+Before proceeding with the following sections, first set up your Dev Server with the required MongoDB and other environemtns, following [this instruction](../setup/DevServer.md).
+
