@@ -370,7 +370,7 @@ class task_13_result_parser(result_parser):
             isummary[t]["mean_p25_p75"] = float(
                 lat[
                     lat[0].between(
-                        isummary[t]["p25"], isummary[t]["p75"], inclusive=True
+                        isummary[t]["p25"], isummary[t]["p75"], inclusive='both'
                     )
                 ].mean()
             )

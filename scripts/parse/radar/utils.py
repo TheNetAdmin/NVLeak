@@ -69,8 +69,6 @@ class mongodb:
     def __init__(self, database, collection):
         self.logger = logging.getLogger("mongo")
         # NOTE: fill with your MongoDB username, password and url
-        #       if you are using Docker/mighty-pc.yaml to create MongoDB Docker
-        #       you can find and set the default username and password in that file
         self.username = os.getenv("MONGODB_USERNAME")
         self.password = os.getenv("MONGODB_PASSWORD")
         self.url = "127.0.0.1:28082"

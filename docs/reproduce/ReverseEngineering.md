@@ -435,7 +435,7 @@ Figure 5b and 6 use the same result, from task 107 (original version) or 111 (si
 3. Generate plots
 
    ```shell
-   $ cd NVLeak/report/data/reproduce/fig6/
+   $ cd NVLeak/report/data/reproduce/fig7/
    # If pymongo gives 'AuthenticationFailed' error, please set up the MongoDB
    #   username and password for parser scripts, following ../setup/DevServer.md
    $ bash ./fetch.sh "${fig7_result}"

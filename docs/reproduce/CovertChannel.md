@@ -111,8 +111,11 @@ $ cd /home/usenix/NVLeak/nvleak/user/covert_channel/cross_vm
 $ ./scripts/nvleak/covert.sh debug_single
 
 # If the above single test works fine, run the following line to run the full experiment
+$ vim ./scripts/nvleak/covert.sh # (Strongly recommended) edit the SlackURL and remove the `export no_slack=y` to set up Slack notification
 $ ./scripts/nvleak/covert.sh all
 ```
+
+The full set of experiment takes ~8hours to run, so we strongly suggest you to enable the Slack notification to track the experiment progress.
 
 Troubleshooting:
 
@@ -125,11 +128,38 @@ Troubleshooting:
 
 ### Collect Cross-VM Covert Channel Results and Generate Plots
 
-On your Dev Server:
+On your Dev Server, parse results (it can take 2 hours or even longer, depending on the performance of your Dev Server):
 
 ```shell
 $ cd NVLeak/data
 $ bash copy.sh # Or manually copy the results from NVRAM Server to Dev Server
-# Assuming the job folder name is ""
-$ export fig9_result=""
+
+# Parse the results and store them locally, not yet upload to the MongoDB
+# Assuming the job folder is "covert_cross_vm/results/all/20221011032039"
+$ fig9_result="20221011032039"
+$ batch_root=covert_cross_vm/results/all \
+    ./parse.sh \
+    "${fig9_result}" \
+    -m \
+  ;
+```
+
+Generate plots:
+
+```shell
+$ cd NVLeak/report/data/reproduce/fig9/
+# If pymongo gives 'AuthenticationFailed' error, please set up the MongoDB
+#   username and password for parser scripts, following ../setup/DevServer.md
+# Choose a single to visualize and set its dir name (i.e., it's job id) as fig9_signal
+#   you may browse the NVLeak/data/covert_cross_vm/results/all/${fig9_results} to choose one sub folder
+#   you may also check the 'results/config.json' under sub folders to identify the signal you need
+#   here we simply choose the first one in the folder
+$ fig9_signal=20221011032041-a380aef-nv-4
+$ bash ./fetch.sh "${fig9_result}" "${fig9_signal}"
+
+$ cd NVLeak/report/
+$ sed -i 's/\#reproduce\/fig9b-covert-vm-summary/reproduce\/fig9b-covert-vm-summary /g' figure/plots.csv
+$ sed -i 's/\#reproduce\/fig9c-covert-vm-signal-receiver/reproduce\/fig9c-covert-vm-signal-receiver /g' figure/plots.csv
+$ vim content/figure/9.tex # uncomment the 'reproduce' sub figures
+$ make # generate the report 'paper.pdf'
 ```
