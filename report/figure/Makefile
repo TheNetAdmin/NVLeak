@@ -25,6 +25,12 @@ plot/reference/fig4-pointer-chasing-heatmap.pdf: ../data/reference/fig4/data.jso
 	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf -a 1
 
 
+plot/reference/fig5a-overwrite-iter-lat.pdf: ../data/reference/fig5/overwrite_256_filtered.csv \
+                                             src/fig5a-overwrite-iter-lat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -34,7 +40,8 @@ all: all_tikz     \
      all_pdf_svg
 
 .PHONY:  all_pdf
-all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf
+all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf \
+         plot/reference/fig5a-overwrite-iter-lat.pdf
 
 .PHONY: all_png
 all_png: 
@@ -95,7 +102,7 @@ clean_tikz_svg:
 
 .PHONY: clean_pdf
 clean_pdf: 
-	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf
+	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf plot/reference/fig5a-overwrite-iter-lat.pdf
 
 .PHONY: clean_png
 clean_png: 

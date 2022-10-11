@@ -355,3 +355,24 @@ Before proceeding with the following sections, first set up your Dev Server with
    $ vim content/figure/4.tex # uncomment the 'reproduce' sub figure
    $ make # generate the report 'paper.pdf'
    ```
+
+### Figure 5a
+
+1. Fetch result data from NVRAM Server to Dev Server, assuming the results are under `NVLeak/data/nvleak/results/tasks-10-10-2022-112-0-nv-4`
+2. Parse the result
+
+   ```shell
+   $ cd NVLeak/data/nvleak/results/tasks-10-10-2022-112-0-nv-4/20221010183005-13c92c3-nv-4
+   $ python3 ../../../../../nvleak/scripts/prober/wear_leveling/parse.py wear-leveling --src_file dump-nv-4-11-256-0-0-0 --out_file overwrite_256.csv
+   # Plot the first 50k lines to reduce the data and plot size, you may choose other number of lines
+   $ head -n 50000 overwrite_256.csv > overwrite_256_filtered.csv
+   ```
+
+3. Generate plots
+
+   ```shell
+   $ cd NVLeak/report/data/reproduce/fig5/
+   $ cp ${fig5_data_path}/overwrite_256_filtered.csv .
+
+   $ cd NVLeak/report
+   ```
