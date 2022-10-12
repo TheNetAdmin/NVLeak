@@ -9,18 +9,18 @@ reference/fig9b-covert-vm-summary                   ,fig9b-covert-vm-summary.R  
 reference/fig9c-covert-vm-signal-receiver           ,fig9c-covert-vm-signal-receiver.R          ,reference/fig9/signal.json                ,-a 2      ,                         ,tikz:tikz_pdf
 reference/fig10a-covert-inode-pmem                  ,fig10-covert-inode.R                       ,reference/fig10/nvram.csv                 ,-a 3      ,                         ,tikz:tikz_pdf
 reference/fig10b-covert-inode-dram                  ,fig10-covert-inode.R                       ,reference/fig10/dram.csv                  ,-a 4      ,                         ,tikz:tikz_pdf
-#reference/fig12-side-sql-u1                         ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                    ,-a 1      ,                         ,pdf
-#reference/fig12-side-sql-u2                         ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                    ,-a 2      ,                         ,pdf
-#reference/fig12-side-sql-c1                         ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 3      ,                         ,pdf
-#reference/fig12-side-sql-q1                         ,fig12-side-channel-feature.R               ,reference/fig12/Q1.csv                    ,-a 4      ,                         ,pdf
-#reference/fig12-side-sql-i1                         ,fig12-side-channel-feature.R               ,reference/fig12/I1.csv                    ,-a 5      ,                         ,pdf
-#reference/fig12-side-sql-s1                         ,fig12-side-channel-feature.R               ,reference/fig12/S1.csv                    ,-a 6      ,                         ,pdf
-#reference/fig12-side-sql-c2                         ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 7      ,                         ,pdf
-#reference/fig12-side-sql-c3                         ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 8      ,                         ,pdf
-#reference/fig13-side-sql-range-month1              ,side-channel-heat.R                        ,reference/fig13/M1.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month2              ,side-channel-heat.R                        ,reference/fig13/M2.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month3              ,side-channel-heat.R                        ,reference/fig13/M3.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month4              ,side-channel-heat.R                        ,reference/fig13/M4.csv                    ,-a 2      ,                         ,png
+#reference/fig12-side-sql-u1                        ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                    ,-a 1      ,                         ,pdf
+#reference/fig12-side-sql-u2                        ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                    ,-a 2      ,                         ,pdf
+#reference/fig12-side-sql-c1                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 3      ,                         ,pdf
+#reference/fig12-side-sql-q1                        ,fig12-side-channel-feature.R               ,reference/fig12/Q1.csv                    ,-a 4      ,                         ,pdf
+#reference/fig12-side-sql-i1                        ,fig12-side-channel-feature.R               ,reference/fig12/I1.csv                    ,-a 5      ,                         ,pdf
+#reference/fig12-side-sql-s1                        ,fig12-side-channel-feature.R               ,reference/fig12/S1.csv                    ,-a 6      ,                         ,pdf
+#reference/fig12-side-sql-c2                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 7      ,                         ,pdf
+#reference/fig12-side-sql-c3                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 8      ,                         ,pdf
+reference/fig13-side-sql-range-month1               ,fig13-side-channel-heat.R                  ,reference/fig13/M1.csv                    ,-a 2      ,                         ,png
+reference/fig13-side-sql-range-month2               ,fig13-side-channel-heat.R                  ,reference/fig13/M2.csv                    ,-a 2      ,                         ,png
+reference/fig13-side-sql-range-month3               ,fig13-side-channel-heat.R                  ,reference/fig13/M3.csv                    ,-a 2      ,                         ,png
+reference/fig13-side-sql-range-month4               ,fig13-side-channel-heat.R                  ,reference/fig13/M4.csv                    ,-a 2      ,                         ,png
 
 #reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
 #reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reproduce/fig4/data.json                  ,-a 1      ,                         ,pdf
@@ -40,7 +40,7 @@ reference/fig10b-covert-inode-dram                  ,fig10-covert-inode.R       
 #reproduce/fig12-side-sql-s1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/S1.csv                    ,-a 6      ,                         ,pdf
 #reproduce/fig12-side-sql-c2                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                    ,-a 7      ,                         ,pdf
 #reproduce/fig12-side-sql-c3                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                    ,-a 8      ,                         ,pdf
-#reference/fig13-side-sql-range-month1              ,side-channel-heat.R                        ,reference/fig13/M1.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month2              ,side-channel-heat.R                        ,reference/fig13/M2.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month3              ,side-channel-heat.R                        ,reference/fig13/M3.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month4              ,side-channel-heat.R                        ,reference/fig13/M4.csv                    ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month1              ,fig13-side-channel-heat.R                  ,reference/fig13/M1.csv                    ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month2              ,fig13-side-channel-heat.R                  ,reference/fig13/M2.csv                    ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month3              ,fig13-side-channel-heat.R                  ,reference/fig13/M3.csv                    ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month4              ,fig13-side-channel-heat.R                  ,reference/fig13/M4.csv                    ,-a 2      ,                         ,png

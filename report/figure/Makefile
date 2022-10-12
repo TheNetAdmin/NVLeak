@@ -99,6 +99,30 @@ plot/reference/fig10b-covert-inode-dram.tikz.pdf: plot/reference/fig10b-covert-i
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
+plot/reference/fig13-side-sql-range-month1.png: ../data/reference/fig13/M1.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
+plot/reference/fig13-side-sql-range-month2.png: ../data/reference/fig13/M2.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
+plot/reference/fig13-side-sql-range-month3.png: ../data/reference/fig13/M3.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
+plot/reference/fig13-side-sql-range-month4.png: ../data/reference/fig13/M4.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -113,8 +137,11 @@ all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf     \
          plot/reference/fig6-overwrite-delay-p99-latency.pdf \
          plot/reference/fig9b-covert-vm-summary.pdf
 
-.PHONY: all_png
-all_png: 
+.PHONY:  all_png
+all_png: plot/reference/fig13-side-sql-range-month1.png \
+         plot/reference/fig13-side-sql-range-month2.png \
+         plot/reference/fig13-side-sql-range-month3.png \
+         plot/reference/fig13-side-sql-range-month4.png
 
 .PHONY:   all_tikz
 all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
@@ -191,7 +218,7 @@ clean_pdf:
 
 .PHONY: clean_png
 clean_png: 
-	rm -f 
+	rm -f plot/reference/fig13-side-sql-range-month1.png plot/reference/fig13-side-sql-range-month2.png plot/reference/fig13-side-sql-range-month3.png plot/reference/fig13-side-sql-range-month4.png
 
 .PHONY: clean_symlinks
 clean_symlinks: 

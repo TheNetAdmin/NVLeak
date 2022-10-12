@@ -52,7 +52,7 @@ figure/plots.tex: figure/plots.csv \
 
 .PHONY: figure
 figure: figure/Makefile figure/plots.tex
-	@make ${make_flag} -C figure all_tikz_pdf all_pdf
+	@make ${make_flag} -C figure all_tikz_pdf all_pdf all_png
 
 
 .PHONY: clean

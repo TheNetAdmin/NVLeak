@@ -160,9 +160,45 @@ Troubleshoot:
 
 ### Collect SQLite Results and Generate Plots
 
-On your Dev Server, fetch the results and generate plots
+On your Dev Server, fetch the results and generate plots. Note the result takes ~12 GiB of disk space.
+
+**Figure 12**
 
 ```shell
 $ cd NVLeak/data
 $ bash copy.sh # Or manually copy the results from NVRAM Server to Dev Server
+
+$ cd NVLeak/report/data/reproduce/fig12/
+$ vim fetch.sh # Fill the task id according to the table below, and check an example in data/reference/fig12/fetch.sh
+$ bash fetch.sh
+
+$ cd NVLeak/report/
+$ sed -i 's/\#reproduce\/fig12/reproduce\/fig12/g' figure/plots.csv
+$ vim content/figure/12.tex # uncomment the 'reproduce' sub figures
+$ make # generate the report 'paper.pdf'
+```
+
+The table below shows a list of SQLite operations (defined by `NVLeak/nvleak/user/side_channel/sqlite/run.sh`) and their corresponding data name (used by `NVLeak/report/data/reproduce/fig12/fetch.sh`). **Note: the `insert1000` is `I2` and `insert10000` is `I1`. This order is different from `update100` and `udpate1000`.**
+
+| SQLite runner script operation | Data Name in the Report |
+| :----------------------------- | :---------------------- |
+| count                          | C1                      |
+| sort                           | S1                      |
+| query                          | Q1                      |
+| insert1000                     | I2                      |
+| insert10000                    | I1                      |
+| update100                      | U1                      |
+| update1000                     | U2                      |
+
+**Figure 13**
+
+```shell
+$ cd NVLeak/report/data/reproduce/fig13/
+$ vim fetch.sh # Fill the task id where monthx is linked as Mx, e.g., month1 result is linked as M1.csv
+$ bash fetch.sh
+
+$ cd NVLeak/report/
+$ sed -i 's/\#reproduce\/fig12/reproduce\/fig12/g' figure/plots.csv
+$ vim content/figure/12.tex # uncomment the 'reproduce' sub figures
+$ make # generate the report 'paper.pdf'
 ```
