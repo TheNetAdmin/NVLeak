@@ -2,7 +2,7 @@
 
 In the main paper we demonstrated two covert channels, a cross-VM channel and a file system inode-based channel. To reproduce these results, first set up the NVRAM Server following [this instruction](../setup/NVRAMServer.md). And then each covert channel requires additional set up steps.
 
-## Reproduce Cross-VM Covert Channel
+## Reproduce Cross-VM Covert Channel (Figure 9)
 
 ### Build QEMU from Source Code
 
@@ -23,7 +23,7 @@ QEMU emulator version 6.0.0
 Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
 ```
 
-### Configure the Optane DIMMs
+### Configure Optane DIMMs for VMs
 
 ```shell
 # Find the Optane PMEM device, e.g., here the 124GB device
@@ -176,9 +176,9 @@ $ vim content/figure/9.tex # uncomment the 'reproduce' sub figures
 $ make # generate the report 'paper.pdf'
 ```
 
-## Reproduce File System Inode Covert Channel
+## Reproduce File System Inode Covert Channel (Figure 10)
 
-### Configure the Optane DIMMs for FS Inode Channel
+### Configure Optane DIMMs for FS Inode Channel
 
 This covert channel needs a different Optane DIMMs configuration compared to the cross-VM channel:
 
