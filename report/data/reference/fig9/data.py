@@ -28,7 +28,7 @@ class mongodb:
 
 @click.command()
 @click.argument("task_id")
-def pull(task_id):
+def pull_data(task_id):
     all_res = []
     all_tasks = [task_id]  # In the format like "20221011032039"
     db = make_mongodb("data:experiment_result")
@@ -37,12 +37,13 @@ def pull(task_id):
         task_res = db.client.find(
             {"batch_id": task},
             {
-                "task": 1,
-                "batch_id": 1,
-                "result.summary": 1,
+                # "task": 1,
+                # "batch_id": 1,
+                "result.summary.metric.median.recv_data.lat_sl": 1,
+                "result.summary.bit_rate": 1,
                 # "result.threads.1.iter_summary": 1,
                 # "result.threads.2.iter_summary": 1,
-                "repeat_cnt": "$task.repeat",
+                # "repeat_cnt": "$task.repeat",
             },
         )
         task_res = [t for t in task_res]
