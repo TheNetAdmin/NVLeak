@@ -293,4 +293,23 @@ $ make
 # Run the covert channel on NVRAM and DRAM separately
 $ test_dev=pmem ./run.sh single
 $ test_dev=dram ./run.sh single
+
+# Parse results
+$ pmem_task_id=20221011-14-44-53
+$ dram_task_id=20221011-14-46-18
+$ python3 parse.py results/single/${pmem_task_id}
+$ python3 parse.py results/single/${dram_task_id}
+```
+
+### Fetch Results and Generate Plots
+
+On your Dev Server:
+
+```shell
+$ cd NVLeak/data
+$ bash copy.sh
+
+# Copy data to report
+$ cd NVLeak/report/data/reproduce/fig10
+$ bash fetch.sh ${pmem_task_id} ${dram_task_id}
 ```

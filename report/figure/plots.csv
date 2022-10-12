@@ -7,6 +7,8 @@ reference/fig6-overwrite-delay-p99-latency          ,fig6-overwrite-delay-p99-la
 reference/fig7-wear-leveling-trigger-100k-dist      ,fig7-wear-leveling-trigger-100k-dist.R     ,reference/fig7/data.json                  ,-c 100000 ,                         ,tikz:tikz_pdf
 reference/fig9b-covert-vm-summary                   ,fig9b-covert-vm-summary.R                  ,reference/fig9/data.json                  ,          ,                         ,pdf
 reference/fig9c-covert-vm-signal-receiver           ,fig9c-covert-vm-signal-receiver.R          ,reference/fig9/signal.json                ,-a 2      ,                         ,tikz:tikz_pdf
+reference/fig10a-covert-inode-pmem                  ,fig10-covert-inode.R                       ,reference/fig10/nvram.csv                 ,-a 3      ,                         ,tikz:tikz_pdf
+reference/fig10b-covert-inode-dram                  ,fig10-covert-inode.R                       ,reference/fig10/dram.csv                  ,-a 4      ,                         ,tikz:tikz_pdf
 
 #reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
 #reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                  ,-a 1      ,                         ,pdf
@@ -16,3 +18,5 @@ reference/fig9c-covert-vm-signal-receiver           ,fig9c-covert-vm-signal-rece
 #reproduce/fig7-wear-leveling-trigger-100k-dist     ,fig7-wear-leveling-trigger-100k-dist.R     ,reference/fig7/data.json                  ,-c 100000 ,                         ,tikz:tikz_pdf
 #reproduce/fig9b-covert-vm-summary                  ,fig9b-covert-vm-summary.R                  ,reference/fig9/data.json                  ,          ,                         ,pdf
 #reproduce/fig9c-covert-vm-signal-receiver          ,fig9c-covert-vm-signal-receiver.R          ,reference/fig9/signal.json                ,-a 2      ,                         ,tikz:tikz_pdf
+#reproduce/fig10a-covert-inode-pmem                 ,fig10-covert-inode.R                       ,reference/fig10/nvram.csv                 ,-a 3      ,                         ,tikz:tikz_pdf
+#reproduce/fig10b-covert-inode-dram                 ,fig10-covert-inode.R                       ,reference/fig10/dram.csv                  ,-a 4      ,                         ,tikz:tikz_pdf

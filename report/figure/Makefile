@@ -77,6 +77,28 @@ plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf: plot/reference/fig9c-co
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
+plot/reference/fig10a-covert-inode-pmem.tikz: ../data/reference/fig10/nvram.csv \
+                                              src/fig10-covert-inode.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 3
+
+
+plot/reference/fig10a-covert-inode-pmem.tikz.pdf: plot/reference/fig10a-covert-inode-pmem.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
+plot/reference/fig10b-covert-inode-dram.tikz: ../data/reference/fig10/dram.csv \
+                                              src/fig10-covert-inode.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 4
+
+
+plot/reference/fig10b-covert-inode-dram.tikz.pdf: plot/reference/fig10b-covert-inode-dram.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -98,13 +120,17 @@ all_png:
 all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
           plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
           plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
-          plot/reference/fig9c-covert-vm-signal-receiver.tikz
+          plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
+          plot/reference/fig10a-covert-inode-pmem.tikz                 \
+          plot/reference/fig10b-covert-inode-dram.tikz
 
 .PHONY:       all_tikz_pdf
 all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
               plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf \
               plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf     \
-              plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf
+              plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf          \
+              plot/reference/fig10a-covert-inode-pmem.tikz.pdf                 \
+              plot/reference/fig10b-covert-inode-dram.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -129,7 +155,9 @@ out/plots.pdf: plots.tex                                                    \
                plot/reference/fig2a-pointer-chasing.tikz                    \
                plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
                plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
-               plot/reference/fig9c-covert-vm-signal-receiver.tikz
+               plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
+               plot/reference/fig10a-covert-inode-pmem.tikz                 \
+               plot/reference/fig10b-covert-inode-dram.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -143,13 +171,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz plot/reference/fig10a-covert-inode-pmem.tikz plot/reference/fig10b-covert-inode-dram.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf plot/reference/fig10a-covert-inode-pmem.tikz.pdf plot/reference/fig10b-covert-inode-dram.tikz.pdf
 
 
 .PHONY: clean_tikz_svg
