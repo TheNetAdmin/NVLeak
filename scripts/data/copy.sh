@@ -20,3 +20,4 @@ copy_data lens   ./lens
 copy_data nvleak ./nvleak
 copy_data nvleak/user/covert_channel/cross_vm ./covert_cross_vm
 copy_data nvleak/user/covert_channel/inode    ./covert_inode
+copy_data nvleak/user/side_channel/sqlite     ./side_sqlite

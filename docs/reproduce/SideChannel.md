@@ -2,6 +2,11 @@
 
 In the main paper we demonstrated three side channels, a SQLite channel, a PMDK key-value store channel, and a wolfSSL channel. To reproduce these results, first set up the NVRAM Server following [this instruction](../setup/NVRAMServer.md). And then each covert channel requires additional set up steps.
 
+|    Metric    | Estimation |
+| :----------: | :--------: |
+| Compute Time |  2 hours   |
+|  Disk Space  |   12 GiB   |
+
 ## Reproduce SQLite Side Channel (Figure 12-13)
 
 ### Install Dependencies
@@ -134,8 +139,30 @@ $ python3 nppes_db.py gen-sqlite-ranged
 
 ### Run SQLite Side Channel (Figure 12 and 13)
 
+This experiment takes ~40 mins to run.
+
 ```shell
 $ sudo -i su
 $ cd /home/usenix/NVLeak/nvleak/user/side_channel/sqlite
 $ ./run.sh
+```
+
+Troubleshoot:
+
+1. If the output is empty with only this error message:
+
+   ```
+   Opening file /dev/dax1.1
+   Could not open file: /dev/dax1.1
+   ```
+
+   Then `ls /dev/dax*` to find which dax device is available, and then update the `nvleak/user/side_channel/common.sh` to change `dax_dev` variable to the available dax device.
+
+### Collect SQLite Results and Generate Plots
+
+On your Dev Server, fetch the results and generate plots
+
+```shell
+$ cd NVLeak/data
+$ bash copy.sh # Or manually copy the results from NVRAM Server to Dev Server
 ```
