@@ -198,7 +198,7 @@ $ vim fetch.sh # Fill the task id where monthx is linked as Mx, e.g., month1 res
 $ bash fetch.sh
 
 $ cd NVLeak/report/
-$ sed -i 's/\#reproduce\/fig12/reproduce\/fig12/g' figure/plots.csv
-$ vim content/figure/12.tex # uncomment the 'reproduce' sub figures
+$ sed -i 's/\#reproduce\/fig13/reproduce\/fig13/g' figure/plots.csv
+$ vim content/figure/13.tex # uncomment the 'reproduce' sub figures
 $ make # generate the report 'paper.pdf'
 ```
