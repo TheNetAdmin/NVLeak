@@ -99,28 +99,54 @@ plot/reference/fig10b-covert-inode-dram.tikz.pdf: plot/reference/fig10b-covert-i
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
-plot/reference/fig13-side-sql-range-month1.png: ../data/reference/fig13/M1.csv \
-                                                src/fig13-side-channel-heat.R
+plot/reference/fig14-pmdk-kv-memory-pattern-all.png: ../data/reference/fig14/summary.csv \
+                                                     src/fig14-pmdk-kv-memory-pattern.R
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 0
 
 
-plot/reference/fig13-side-sql-range-month2.png: ../data/reference/fig13/M2.csv \
-                                                src/fig13-side-channel-heat.R
+plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz: ../data/reference/fig14/summary.csv \
+                                                      src/fig14-pmdk-kv-memory-pattern.R
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 256
 
 
-plot/reference/fig13-side-sql-range-month3.png: ../data/reference/fig13/M3.csv \
-                                                src/fig13-side-channel-heat.R
+plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
-plot/reference/fig13-side-sql-range-month4.png: ../data/reference/fig13/M4.csv \
-                                                src/fig13-side-channel-heat.R
+plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz: ../data/reference/fig14/summary.csv \
+                                                      src/fig14-pmdk-kv-memory-pattern.R
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 512
+
+
+plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
+plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz: ../data/reference/fig14/summary.csv \
+                                                      src/fig14-pmdk-kv-memory-pattern.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 768
+
+
+plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
+
+
+plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz: ../data/reference/fig14/summary.csv \
+                                                       src/fig14-pmdk-kv-memory-pattern.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 1024
+
+
+plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
+	@echo -e "GEN \t $@"
+	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
 .PHONY: all
@@ -138,10 +164,7 @@ all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf     \
          plot/reference/fig9b-covert-vm-summary.pdf
 
 .PHONY:  all_png
-all_png: plot/reference/fig13-side-sql-range-month1.png \
-         plot/reference/fig13-side-sql-range-month2.png \
-         plot/reference/fig13-side-sql-range-month3.png \
-         plot/reference/fig13-side-sql-range-month4.png
+all_png: plot/reference/fig14-pmdk-kv-memory-pattern-all.png
 
 .PHONY:   all_tikz
 all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
@@ -149,7 +172,11 @@ all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
           plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
           plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
           plot/reference/fig10a-covert-inode-pmem.tikz                 \
-          plot/reference/fig10b-covert-inode-dram.tikz
+          plot/reference/fig10b-covert-inode-dram.tikz                 \
+          plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz         \
+          plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz         \
+          plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz         \
+          plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
 
 .PHONY:       all_tikz_pdf
 all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
@@ -157,7 +184,11 @@ all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
               plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf     \
               plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf          \
               plot/reference/fig10a-covert-inode-pmem.tikz.pdf                 \
-              plot/reference/fig10b-covert-inode-dram.tikz.pdf
+              plot/reference/fig10b-covert-inode-dram.tikz.pdf                 \
+              plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz.pdf         \
+              plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz.pdf         \
+              plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz.pdf         \
+              plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -184,7 +215,11 @@ out/plots.pdf: plots.tex                                                    \
                plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
                plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
                plot/reference/fig10a-covert-inode-pmem.tikz                 \
-               plot/reference/fig10b-covert-inode-dram.tikz
+               plot/reference/fig10b-covert-inode-dram.tikz                 \
+               plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz         \
+               plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz         \
+               plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz         \
+               plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -198,13 +233,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz plot/reference/fig10a-covert-inode-pmem.tikz plot/reference/fig10b-covert-inode-dram.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz plot/reference/fig10a-covert-inode-pmem.tikz plot/reference/fig10b-covert-inode-dram.tikz plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf plot/reference/fig10a-covert-inode-pmem.tikz.pdf plot/reference/fig10b-covert-inode-dram.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf plot/reference/fig10a-covert-inode-pmem.tikz.pdf plot/reference/fig10b-covert-inode-dram.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz.pdf
 
 
 .PHONY: clean_tikz_svg
@@ -218,7 +253,7 @@ clean_pdf:
 
 .PHONY: clean_png
 clean_png: 
-	rm -f plot/reference/fig13-side-sql-range-month1.png plot/reference/fig13-side-sql-range-month2.png plot/reference/fig13-side-sql-range-month3.png plot/reference/fig13-side-sql-range-month4.png
+	rm -f plot/reference/fig14-pmdk-kv-memory-pattern-all.png
 
 .PHONY: clean_symlinks
 clean_symlinks: 

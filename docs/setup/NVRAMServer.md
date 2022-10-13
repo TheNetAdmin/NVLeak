@@ -109,6 +109,12 @@ Log in to the NVRAM Server and:
    nothing to commit, working tree clean
    ```
 
+6. Install additional tools
+
+   ```shell
+   $ sudo apt install jq
+   ```
+
 ### Manually set up the environments
 
 > TODO: To be added
