@@ -21,11 +21,11 @@ reference/fig10b-covert-inode-dram                  ,fig10-covert-inode.R       
 #reference/fig13-side-sql-range-month2              ,fig13-side-channel-heat.R                  ,reference/fig13/M2.csv                    ,-a 2      ,                         ,png
 #reference/fig13-side-sql-range-month3              ,fig13-side-channel-heat.R                  ,reference/fig13/M3.csv                    ,-a 2      ,                         ,png
 #reference/fig13-side-sql-range-month4              ,fig13-side-channel-heat.R                  ,reference/fig13/M4.csv                    ,-a 2      ,                         ,png
-reference/fig14-pmdk-kv-memory-pattern-all          ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 0      ,                         ,png
-reference/fig14-pmdk-kv-memory-pattern-256          ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 256    ,                         ,tikz:tikz_pdf
-reference/fig14-pmdk-kv-memory-pattern-512          ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 512    ,                         ,tikz:tikz_pdf
-reference/fig14-pmdk-kv-memory-pattern-768          ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 768    ,                         ,tikz:tikz_pdf
-reference/fig14-pmdk-kv-memory-pattern-1024         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 1024   ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-all         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 0      ,                         ,png
+#reference/fig14-pmdk-kv-memory-pattern-256         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 256    ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 512    ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 768    ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 1024   ,                         ,tikz:tikz_pdf
 
 #reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
 #reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reproduce/fig4/data.json                  ,-a 1      ,                         ,pdf
