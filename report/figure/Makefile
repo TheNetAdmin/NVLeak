@@ -99,52 +99,19 @@ plot/reference/fig10b-covert-inode-dram.tikz.pdf: plot/reference/fig10b-covert-i
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
 
-plot/reference/fig14-pmdk-kv-memory-pattern-all.png: ../data/reference/fig14/summary.csv \
-                                                     src/fig14-pmdk-kv-memory-pattern.R
+plot/reference/fig15-fp-exptmod-all.png: ../data/reference/fig15/summary.csv \
+                                         src/fig15-side-channel-shared-lib.R
 	@echo -e "GEN \t $@"
 	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 0
 
 
-plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz: ../data/reference/fig14/summary.csv \
-                                                      src/fig14-pmdk-kv-memory-pattern.R
+plot/reference/fig15-fp-exptmod.tikz: ../data/reference/fig15/summary.csv \
+                                      src/fig15-side-channel-shared-lib.R
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 256
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 3
 
 
-plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz: ../data/reference/fig14/summary.csv \
-                                                      src/fig14-pmdk-kv-memory-pattern.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 512
-
-
-plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz: ../data/reference/fig14/summary.csv \
-                                                      src/fig14-pmdk-kv-memory-pattern.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 768
-
-
-plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz: ../data/reference/fig14/summary.csv \
-                                                       src/fig14-pmdk-kv-memory-pattern.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 1024
-
-
-plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz.pdf: plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
+plot/reference/fig15-fp-exptmod.tikz.pdf: plot/reference/fig15-fp-exptmod.tikz
 	@echo -e "GEN \t $@"
 	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
 
@@ -164,7 +131,7 @@ all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf     \
          plot/reference/fig9b-covert-vm-summary.pdf
 
 .PHONY:  all_png
-all_png: plot/reference/fig14-pmdk-kv-memory-pattern-all.png
+all_png: plot/reference/fig15-fp-exptmod-all.png
 
 .PHONY:   all_tikz
 all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
@@ -173,10 +140,7 @@ all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
           plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
           plot/reference/fig10a-covert-inode-pmem.tikz                 \
           plot/reference/fig10b-covert-inode-dram.tikz                 \
-          plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz         \
-          plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz         \
-          plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz         \
-          plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
+          plot/reference/fig15-fp-exptmod.tikz
 
 .PHONY:       all_tikz_pdf
 all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
@@ -185,10 +149,7 @@ all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
               plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf          \
               plot/reference/fig10a-covert-inode-pmem.tikz.pdf                 \
               plot/reference/fig10b-covert-inode-dram.tikz.pdf                 \
-              plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz.pdf         \
-              plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz.pdf         \
-              plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz.pdf         \
-              plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz.pdf
+              plot/reference/fig15-fp-exptmod.tikz.pdf
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -216,10 +177,7 @@ out/plots.pdf: plots.tex                                                    \
                plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
                plot/reference/fig10a-covert-inode-pmem.tikz                 \
                plot/reference/fig10b-covert-inode-dram.tikz                 \
-               plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz         \
-               plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz         \
-               plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz         \
-               plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
+               plot/reference/fig15-fp-exptmod.tikz
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -233,13 +191,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz plot/reference/fig10a-covert-inode-pmem.tikz plot/reference/fig10b-covert-inode-dram.tikz plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz
+	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz plot/reference/fig10a-covert-inode-pmem.tikz plot/reference/fig10b-covert-inode-dram.tikz plot/reference/fig15-fp-exptmod.tikz
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf plot/reference/fig10a-covert-inode-pmem.tikz.pdf plot/reference/fig10b-covert-inode-dram.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-256.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-512.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-768.tikz.pdf plot/reference/fig14-pmdk-kv-memory-pattern-1024.tikz.pdf
+	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf plot/reference/fig10a-covert-inode-pmem.tikz.pdf plot/reference/fig10b-covert-inode-dram.tikz.pdf plot/reference/fig15-fp-exptmod.tikz.pdf
 
 
 .PHONY: clean_tikz_svg
@@ -253,7 +211,7 @@ clean_pdf:
 
 .PHONY: clean_png
 clean_png: 
-	rm -f plot/reference/fig14-pmdk-kv-memory-pattern-all.png
+	rm -f plot/reference/fig15-fp-exptmod-all.png
 
 .PHONY: clean_symlinks
 clean_symlinks: 

@@ -26,6 +26,8 @@ reference/fig10b-covert-inode-dram                  ,fig10-covert-inode.R       
 #reference/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 512    ,                         ,tikz:tikz_pdf
 #reference/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 768    ,                         ,tikz:tikz_pdf
 #reference/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 1024   ,                         ,tikz:tikz_pdf
+reference/fig15-fp-exptmod-all                      ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv               ,-a 0      ,                         ,png
+reference/fig15-fp-exptmod                          ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv               ,-a 3      ,                         ,tikz:tikz_pdf
 
 #reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
 #reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reproduce/fig4/data.json                  ,-a 1      ,                         ,pdf
@@ -54,3 +56,5 @@ reference/fig10b-covert-inode-dram                  ,fig10-covert-inode.R       
 #reproduce/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 512    ,                         ,tikz:tikz_pdf
 #reproduce/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 768    ,                         ,tikz:tikz_pdf
 #reproduce/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 1024   ,                         ,tikz:tikz_pdf
+#reproduce/fig15-fp-exptmod-all                      ,fig15-side-channel-shared-lib.R            ,reproduce/fig15/summary.csv               ,-a 0      ,                         ,png
+#reproduce/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reproduce/fig15/summary.csv               ,-a 3      ,                         ,tikz:tikz_pdf

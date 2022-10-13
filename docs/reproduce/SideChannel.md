@@ -205,7 +205,7 @@ $ make # generate the report 'paper.pdf'
 
 ## Reproduce PMDK Side Channel (Figure 14)
 
-### Build Dependencies
+### Build PMDK Dependencies
 
 ```shell
 $ cd NVLeak/nvleak/user/side_channel/libpmemobj-cpp
@@ -376,3 +376,180 @@ $ make # generate the report 'paper.pdf'
 
 If the output graph does not show the patterns, then check the generated plot `NVLkea/report/figure/plot/reproduce/fig14-pmdk-kv-memory-pattern-all.png` to find four patterns, and update their x-axis value in the plotting script `NVLkea/report/figure/src/fig14-pmdk-kv-memory-pattern.R`.
 
+## Reproduce wolfSSL Side Channel (Figure 15)
+
+### Configure Optane DIMMs for wolfSSL Side Channel
+
+> NOTE: Please set up the Optane DIMM following the steps below, even if you've set it up in prior experiments. This re-setup initializes the file system states and makes it easier to run the side channel
+
+```shell
+# Remove all namespaces
+$ sudo umount /mnt/pmem /mnt/dram
+$ sudo ndctl destroy-namespace -f namespace1.1
+destroyed 1 namespace
+$ sudo ndctl destroy-namespace -f namespace1.x # Replace the 'x' according to the existing namespace
+destroyed 1 namespace
+
+# Make sure there's only one device from blockdev 'pmem0'
+$ ndctl list -u
+{
+  "dev":"namespace0.0",
+  "mode":"fsdax",
+  "map":"mem",
+  "size":"32.00 GiB (34.36 GB)",
+  "sector_size":512,
+  "blockdev":"pmem0"
+}
+
+# Set up the Optane DIMM
+$ cd NVLeak/nvleak/user/side_channel/wolfssl
+$ sudo bash setup.sh
+# When prompt for choices, choose "1" or "y" to proceed
+
+# Check if there is a 'dax-victim' and a 'dax-attacker' device
+$ ndctl list -u
+[
+  {
+    "dev":"namespace1.0",
+    "mode":"fsdax",
+    "map":"dev",
+    "size":"15.00 GiB (16.11 GB)",
+    "uuid":"b3ca7959-5042-4743-a1c2-71ca4d01e31b",
+    "sector_size":512,
+    "align":1073741824,
+    "blockdev":"pmem1",
+    "name":"dax-victim"
+  },
+  {
+    "dev":"namespace1.3",
+    "mode":"devdax",
+    "map":"dev",
+    "size":"15.00 GiB (16.11 GB)",
+    "uuid":"6a5b0184-f9dd-4658-9ad0-9203095dd94a",
+    "chardev":"dax1.3",
+    "align":1073741824,
+    "name":"dax-attacker"
+  },
+  {
+    "dev":"namespace0.0",
+    "mode":"fsdax",
+    "map":"mem",
+    "size":"32.00 GiB (34.36 GB)",
+    "sector_size":512,
+    "blockdev":"pmem0"
+  }
+]
+```
+
+### Build wolfSSL Dependencies
+
+Get and build wolfSSL
+
+```shell
+$ cd $HOME
+$ git clone https://github.com/TheNetAdmin/NVLeak-wolfSSL.git wolfssl
+$ cd wolfssl
+$ ./autogen.sh
+$ mkdir build && cd build
+$ ../configure --prefix=/mnt/pmem --enable-keygen --disable-harden # NOTE: must disable harden for the side channel
+$ make -j $(nproc)
+$ sudo make install
+```
+
+Build victim application
+
+```shell
+$ cd NVLeak/nvleak/user/side_channel/wolfssl/wolf/test_rsa/
+$ make
+
+# Test if the victim application works
+$ ./rsa_keytest
+----------------------------------------------------------------
+n sign: 0
+n words used: 16
+
+dword[0]:   dcad7e37c809085f
+dword[1]:   e4037bd9a3cb2682
+dword[2]:   cfb712f1f327c5fe
+dword[3]:   fa3c5fe674bea4d3
+dword[4]:   868330fcfdb448ae
+
+... (many lines)
+
+dword[6]:   d7dd2d05e23dcae6
+dword[7]:   5e51d6222c460bd
+----------------------------------------------------------------
+$ echo $?
+0
+```
+
+Check and make sure wolfSSL lib file is not fragmented
+
+```shell
+$ filefrag -v /mnt/pmem/lib/libwolfssl.so.23.0.0 
+Filesystem type is: ef53
+File size of /mnt/pmem/lib/libwolfssl.so.23.0.0 is 464320 (114 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:        0..     113:      33888..     34001:    114:             last,eof
+/mnt/pmem/lib/libwolfssl.so.23.0.0: 1 extent found
+
+# If there are more than one lines after the 'ext:' line (i.e., this file is fragmented, not stored in continuous blocks)
+# This should not affect the results, but if the final figure doesn't show the detected func calls, then de-frag the file by
+#    1. Unmount /mnt/pmem, reformat the filesystem, and re-mount /mnt/pmem
+#    2. Install wolfSSL again
+```
+
+### Run wolfSSL Side Channel
+
+Parse the library file and find addresses of secrete-related functions
+
+```shell
+$ cd NVLeak/nvleak/user/side_channel/wolfssl/wolf/analyze
+$ bash analyze_lib_file.sh 
+{   '_fp_exptmod_base_2': {'addr': 177248, 'offset': 1120, 'pageno': 43},
+    'fp_montgomery_reduce': {'addr': 168464, 'offset': 528, 'pageno': 41},
+    'fp_sqr': {'addr': 167536, 'offset': 3696, 'pageno': 40}}
+
+# Set environment variable from the above output:
+$ export pageno=# FILL THIS: the 'pageno' field
+$ export offset=# FILL THIS: the 'offset' field
+
+# E.g., when probing the 'fp_sqr' function:
+# export pageno=40
+# export offset=3696
+# Do NOT directly use these values, change them to the ones you get from the above output
+```
+
+Run the side channel
+
+```shell
+$ sudo -i su
+$ cd /home/usenix/NVLeak/nvleak/user/side_channel/wolfssl
+
+# Before running, set the 'pageno' and 'offset' environment variables, because you just changed user to root, they may not carry the env vars you just set
+
+# Run the side channel
+$ ./run.sh # Enter 2 to select './runner/2_probe_rsa.sh' script to run
+
+```
+
+
+### Collect wolfSSL Results and Generate Plots
+
+On your Dev Server, fetch the results and generate plots.
+
+```shell
+$ cd NVLeak/data
+$ bash copy.sh # Or manually copy the results from NVRAM Server to Dev Server
+
+# Assuming the task id is '20221013-02-39-55'
+$ fig15_result="20221013-02-39-55"
+
+$ cd NVLeak/report/data/reproduce/fig15/
+$ bash fetch.sh "${fig15_result}"
+
+$ cd NVLeak/report/
+$ sed -i 's/\#reproduce\/fig15/reproduce\/fig15/g' figure/plots.csv
+$ vim content/figure/15.tex # uncomment the 'reproduce' sub figures
+$ make # generate the report 'paper.pdf'
+```
