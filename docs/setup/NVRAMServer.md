@@ -5,6 +5,8 @@
 1. Install `ipmctl`
 2. Install `ndctl`
 
+> These tools are pre-installed on the machine we provided to Usenix Security 23 AE committee.
+
 ## Get the code
 
 On the *NVRAM Server*, run the following lines to get the NVLeak code and initialize the project:
