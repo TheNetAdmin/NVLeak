@@ -43,6 +43,12 @@ if (opt$arg == 0) {
     x_breaks <- seq(0, iter_end - iter_beg, 1000)
     x_limits <- c(0, iter_end - iter_beg)
     y_limits <- c(200, 1000)
+} else if (opt$arg == 43) {
+    iter_beg <- 146800
+    iter_end <- 147200
+    x_breaks <- seq(0, iter_end - iter_beg, 1000)
+    x_limits <- c(0, iter_end - iter_beg)
+    y_limits <- c(200, 1000)
 }
 
 output_dev(opt$type, opt$out, fig_width, fig_height)

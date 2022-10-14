@@ -8,114 +8,6 @@ make_flag:=--no-print-directory -j8
 
 RSCRIPT:=Rscript --no-save --no-restore
 
-plot/reference/fig2a-pointer-chasing.tikz: ../data/reference/fig2/pointer_chasing.csv \
-                                           src/fig2a-pointer-chasing.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz 
-
-
-plot/reference/fig2a-pointer-chasing.tikz.pdf: plot/reference/fig2a-pointer-chasing.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig4-pointer-chasing-heatmap.pdf: ../data/reference/fig4/data.json   \
-                                                 src/fig4-pointer-chasing-heatmap.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf -a 1
-
-
-plot/reference/fig5a-overwrite-iter-lat.pdf: ../data/reference/fig5/overwrite_256_filtered.csv \
-                                             src/fig5a-overwrite-iter-lat.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
-
-
-plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz: ../data/reference/fig6/data.json               \
-                                                              src/fig5b-overwrite-delay-p99-latency-sample.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz 
-	@bash ../script/figure/post_process/tikz/heatmap_path_fix.sh $@
-
-
-plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf: plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig6-overwrite-delay-p99-latency.pdf: ../data/reference/fig6/data.json       \
-                                                     src/fig6-overwrite-delay-p99-latency.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
-
-
-plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz: ../data/reference/fig7/data.json           \
-                                                          src/fig7-wear-leveling-trigger-100k-dist.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -c 100000
-
-
-plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf: plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig9b-covert-vm-summary.pdf: ../data/reference/fig9/data.json \
-                                            src/fig9b-covert-vm-summary.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type pdf 
-
-
-plot/reference/fig9c-covert-vm-signal-receiver.tikz: ../data/reference/fig9/signal.json    \
-                                                     src/fig9c-covert-vm-signal-receiver.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 2
-
-
-plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf: plot/reference/fig9c-covert-vm-signal-receiver.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig10a-covert-inode-pmem.tikz: ../data/reference/fig10/nvram.csv \
-                                              src/fig10-covert-inode.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 3
-
-
-plot/reference/fig10a-covert-inode-pmem.tikz.pdf: plot/reference/fig10a-covert-inode-pmem.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig10b-covert-inode-dram.tikz: ../data/reference/fig10/dram.csv \
-                                              src/fig10-covert-inode.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 4
-
-
-plot/reference/fig10b-covert-inode-dram.tikz.pdf: plot/reference/fig10b-covert-inode-dram.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig15-fp-exptmod-all.png: ../data/reference/fig15/summary.csv \
-                                         src/fig15-side-channel-shared-lib.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 0
-
-
-plot/reference/fig15-fp-exptmod.tikz: ../data/reference/fig15/summary.csv \
-                                      src/fig15-side-channel-shared-lib.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 3
-
-
-plot/reference/fig15-fp-exptmod.tikz.pdf: plot/reference/fig15-fp-exptmod.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
 .PHONY: all
 all: all_tikz     \
      all_pdf      \
@@ -124,32 +16,17 @@ all: all_tikz     \
      all_tikz_svg \
      all_pdf_svg
 
-.PHONY:  all_pdf
-all_pdf: plot/reference/fig4-pointer-chasing-heatmap.pdf     \
-         plot/reference/fig5a-overwrite-iter-lat.pdf         \
-         plot/reference/fig6-overwrite-delay-p99-latency.pdf \
-         plot/reference/fig9b-covert-vm-summary.pdf
+.PHONY: all_pdf
+all_pdf: 
 
-.PHONY:  all_png
-all_png: plot/reference/fig15-fp-exptmod-all.png
+.PHONY: all_png
+all_png: 
 
-.PHONY:   all_tikz
-all_tikz: plot/reference/fig2a-pointer-chasing.tikz                    \
-          plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
-          plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
-          plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
-          plot/reference/fig10a-covert-inode-pmem.tikz                 \
-          plot/reference/fig10b-covert-inode-dram.tikz                 \
-          plot/reference/fig15-fp-exptmod.tikz
+.PHONY: all_tikz
+all_tikz: 
 
-.PHONY:       all_tikz_pdf
-all_tikz_pdf: plot/reference/fig2a-pointer-chasing.tikz.pdf                    \
-              plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf \
-              plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf     \
-              plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf          \
-              plot/reference/fig10a-covert-inode-pmem.tikz.pdf                 \
-              plot/reference/fig10b-covert-inode-dram.tikz.pdf                 \
-              plot/reference/fig15-fp-exptmod.tikz.pdf
+.PHONY: all_tikz_pdf
+all_tikz_pdf: 
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -168,16 +45,9 @@ figure:
 .PHONY:      tikz_to_pdf
 tikz_to_pdf: out/plots.pdf
 
-out/plots.pdf: plots.tex                                                    \
-               config                                                       \
-               figure                                                       \
-               plot/reference/fig2a-pointer-chasing.tikz                    \
-               plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz \
-               plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz     \
-               plot/reference/fig9c-covert-vm-signal-receiver.tikz          \
-               plot/reference/fig10a-covert-inode-pmem.tikz                 \
-               plot/reference/fig10b-covert-inode-dram.tikz                 \
-               plot/reference/fig15-fp-exptmod.tikz
+out/plots.pdf: plots.tex \
+               config    \
+               figure
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -191,13 +61,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz plot/reference/fig9c-covert-vm-signal-receiver.tikz plot/reference/fig10a-covert-inode-pmem.tikz plot/reference/fig10b-covert-inode-dram.tikz plot/reference/fig15-fp-exptmod.tikz
+	rm -f 
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig2a-pointer-chasing.tikz.pdf plot/reference/fig5b-overwrite-delay-p99-latency-sample.tikz.pdf plot/reference/fig7-wear-leveling-trigger-100k-dist.tikz.pdf plot/reference/fig9c-covert-vm-signal-receiver.tikz.pdf plot/reference/fig10a-covert-inode-pmem.tikz.pdf plot/reference/fig10b-covert-inode-dram.tikz.pdf plot/reference/fig15-fp-exptmod.tikz.pdf
+	rm -f 
 
 
 .PHONY: clean_tikz_svg
@@ -207,11 +77,11 @@ clean_tikz_svg:
 
 .PHONY: clean_pdf
 clean_pdf: 
-	rm -f plot/reference/fig4-pointer-chasing-heatmap.pdf plot/reference/fig5a-overwrite-iter-lat.pdf plot/reference/fig6-overwrite-delay-p99-latency.pdf plot/reference/fig9b-covert-vm-summary.pdf
+	rm -f 
 
 .PHONY: clean_png
 clean_png: 
-	rm -f plot/reference/fig15-fp-exptmod-all.png
+	rm -f 
 
 .PHONY: clean_symlinks
 clean_symlinks: 

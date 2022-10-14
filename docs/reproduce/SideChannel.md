@@ -553,3 +553,23 @@ $ sed -i 's/\#reproduce\/fig15/reproduce\/fig15/g' figure/plots.csv
 $ vim content/figure/15.tex # uncomment the 'reproduce' sub figures
 $ make # generate the report 'paper.pdf'
 ```
+
+If the output does not show the detected low latencies, then check the other generated graph:
+
+1. Check `figure/plot/reproduce/fig15-fp-exptmod-all.png`
+2. Edit the plotting script `figure/src/fig15-side-channel-shared-lib.R` to modify the following code's `iter_beg` and `iter_end` to narrow the plot x-axis range and locate the x-axis range for the low latencies
+
+ ```R
+if (opt$arg == 0) {
+    # Full output
+    iter_beg <- 0
+    iter_end <- 1200 * 300
+    x_breaks <- seq(0, 12000, iter_end)
+    x_limits <- c(0, iter_end - iter_beg)
+    y_limits <- c(0, 2000)
+    fig_width <- fig_width * 10
+```
+
+3. Navigate to `NVLeak/report` and run `make figure` to remake figures and check the output `fig15-fp-exptmod-all.png`
+4. Once you get the x-axis range for the detected patterns, update the `iter_beg` and `iter_end` under the `else if (opt$arg == 43) {` branch
+5. Re-run `make` to remake all figures and re-generate the report `paper.pdf`
