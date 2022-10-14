@@ -8,39 +8,6 @@ make_flag:=--no-print-directory -j8
 
 RSCRIPT:=Rscript --no-save --no-restore
 
-plot/reference/fig16-pmdk-kv-memory-layout.tikz: ../data/reference/fig16/original_memory_layout.csv \
-                                                 src/fig16-pmdk-kv-memory-layout.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 0
-
-
-plot/reference/fig16-pmdk-kv-memory-layout.tikz.pdf: plot/reference/fig16-pmdk-kv-memory-layout.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz: ../data/reference/fig16/mitigate_memory_layout.csv \
-                                                        src/fig16-pmdk-kv-memory-layout.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz -a 1
-
-
-plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz.pdf: plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
-plot/reference/fig16-mitigation-performance.tikz: ../data/reference/fig16/performance.csv \
-                                                  src/fig16-mitigation-performance.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type tikz 
-
-
-plot/reference/fig16-mitigation-performance.tikz.pdf: plot/reference/fig16-mitigation-performance.tikz
-	@echo -e "GEN \t $@"
-	@bash ../script/figure/tikz_to_pdf/tikz_to_pdf.sh $<
-
-
 ./Rplots.svg: ./Rplots.pdf
 	@echo -e "GEN \t $@"
 	@bash ../script/figure/pdf_to_svg/pdf_to_svg.sh $<
@@ -60,15 +27,11 @@ all_pdf:
 .PHONY: all_png
 all_png: 
 
-.PHONY:   all_tikz
-all_tikz: plot/reference/fig16-pmdk-kv-memory-layout.tikz        \
-          plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz \
-          plot/reference/fig16-mitigation-performance.tikz
+.PHONY: all_tikz
+all_tikz: 
 
-.PHONY:       all_tikz_pdf
-all_tikz_pdf: plot/reference/fig16-pmdk-kv-memory-layout.tikz.pdf        \
-              plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz.pdf \
-              plot/reference/fig16-mitigation-performance.tikz.pdf
+.PHONY: all_tikz_pdf
+all_tikz_pdf: 
 
 .PHONY: all_tikz_svg
 all_tikz_svg: 
@@ -87,12 +50,9 @@ figure:
 .PHONY:      tikz_to_pdf
 tikz_to_pdf: out/plots.pdf
 
-out/plots.pdf: plots.tex                                              \
-               config                                                 \
-               figure                                                 \
-               plot/reference/fig16-pmdk-kv-memory-layout.tikz        \
-               plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz \
-               plot/reference/fig16-mitigation-performance.tikz
+out/plots.pdf: plots.tex \
+               config    \
+               figure
 	@latexmk -pdf -outdir=out -quiet plots.tex
 
 
@@ -106,13 +66,13 @@ clean: clean_tikz     \
 
 .PHONY: clean_tikz
 clean_tikz: 
-	rm -f plot/reference/fig16-pmdk-kv-memory-layout.tikz plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz plot/reference/fig16-mitigation-performance.tikz
+	rm -f 
 	rm -f *_ras1.png
 
 
 .PHONY: clean_tikz_pdf
 clean_tikz_pdf: 
-	rm -f plot/reference/fig16-pmdk-kv-memory-layout.tikz.pdf plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz.pdf plot/reference/fig16-mitigation-performance.tikz.pdf
+	rm -f 
 
 
 .PHONY: clean_tikz_svg
