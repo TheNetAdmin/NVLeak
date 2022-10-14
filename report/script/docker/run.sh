@@ -7,3 +7,11 @@ docker run --rm \
     thenetadmin/nap \
     $* \
 ;
+
+if [ $? -ne 0 ]; then
+    echo "#################################################"
+    echo "Did not find the docker image to build this paper"
+    echo "You may exeute the 'docker/build.sh' to build it"
+    echo "And then redo 'make'"
+    echo "#################################################"
+fi
