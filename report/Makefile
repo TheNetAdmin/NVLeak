@@ -1,4 +1,4 @@
-.DEFAULT_GOAL:=paper
+.DEFAULT_GOAL:=docker-build
 make_flag:=--no-print-directory -j8
 
 .PHONY: paper
