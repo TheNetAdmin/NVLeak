@@ -1,0 +1,47 @@
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{.24\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figure/plot/reference/fig16-pmdk-kv-memory-layout.tikz.pdf}
+        \caption{[Ref] Original.}
+        \label{fig:16:ref:pmdk-kv-memory-layout-original}
+    \end{subfigure}
+    \begin{subfigure}[b]{.24\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figure/plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz.pdf}
+        \caption{[Ref] With NVLeak defense.}
+        \label{fig:16:ref:pmdk-kv-memory-layout-secure}
+    \end{subfigure}
+    \begin{subfigure}[b]{.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figure/plot/reference/fig16-mitigation-performance.tikz.pdf}
+        \caption{[Ref] Defense performance evaluation.}
+        \label{fig:16:ref:defense-perf}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{.24\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics{example-image-duck}}
+        % \includegraphics[width=\linewidth]{figure/plot/reference/fig16-pmdk-kv-memory-layout.tikz.pdf}
+        \caption{[Rep] Original.}
+        \label{fig:16:rep:pmdk-kv-memory-layout-original}
+    \end{subfigure}
+    \begin{subfigure}[b]{.24\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics{example-image-duck}}
+        % \includegraphics[width=\linewidth]{figure/plot/reference/fig16-pmdk-kv-memory-layout-secure.tikz.pdf}
+        \caption{[Rep] With NVLeak defense.}
+        \label{fig:16:rep:pmdk-kv-memory-layout-secure}
+    \end{subfigure}
+    \begin{subfigure}[b]{.48\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\includegraphics{example-image-duck}}
+        % \includegraphics[width=\linewidth]{figure/plot/reference/fig16-mitigation-performance.tikz.pdf}
+        \caption{[Rep] Defense performance evaluation.}
+        \label{fig:16:rep:defense-perf}
+    \end{subfigure}
+    \caption{NVLeak mitigations applied to (a-b) PMDK key-value store and (c) a PMDK benchmark suite.}
+    \label{fig:16:nvleak-defense}
+
+\end{figure}

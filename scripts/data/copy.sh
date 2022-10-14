@@ -18,8 +18,9 @@ function copy_data() {
 
 copy_data lens   ./lens
 copy_data nvleak ./nvleak
-copy_data nvleak/user/covert_channel/cross_vm ./covert_cross_vm
-copy_data nvleak/user/covert_channel/inode    ./covert_inode
-copy_data nvleak/user/side_channel/sqlite     ./side_sqlite
-copy_data nvleak/user/side_channel/map_cli    ./side_map_cli
-copy_data nvleak/user/side_channel/wolfssl    ./side_wolfssl
+copy_data nvleak/user/covert_channel/cross_vm           ./covert_cross_vm
+copy_data nvleak/user/covert_channel/inode              ./covert_inode
+copy_data nvleak/user/side_channel/sqlite               ./side_sqlite
+copy_data nvleak/user/side_channel/map_cli              ./side_map_cli
+copy_data nvleak/user/side_channel/wolfssl              ./side_wolfssl
+copy_data nvleak/user/side_channel/mitigation_benchmark ./mitigation_benchmark

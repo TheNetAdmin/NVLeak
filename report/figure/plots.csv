@@ -1,60 +1,66 @@
-target                                              ,code                                       ,data                                      ,arg       ,post_process             ,type
-#reference/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reference/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
-#reference/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                  ,-a 1      ,                         ,pdf
-#reference/fig5a-overwrite-iter-lat                 ,fig5a-overwrite-iter-lat.R                 ,reference/fig5/overwrite_256_filtered.csv ,          ,                         ,pdf
-#reference/fig5b-overwrite-delay-p99-latency-sample ,fig5b-overwrite-delay-p99-latency-sample.R ,reference/fig6/data.json                  ,          ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
-#reference/fig6-overwrite-delay-p99-latency         ,fig6-overwrite-delay-p99-latency.R         ,reference/fig6/data.json                  ,          ,                         ,pdf
-#reference/fig7-wear-leveling-trigger-100k-dist     ,fig7-wear-leveling-trigger-100k-dist.R     ,reference/fig7/data.json                  ,-c 100000 ,                         ,tikz:tikz_pdf
-#reference/fig9b-covert-vm-summary                  ,fig9b-covert-vm-summary.R                  ,reference/fig9/data.json                  ,          ,                         ,pdf
-#reference/fig9c-covert-vm-signal-receiver          ,fig9c-covert-vm-signal-receiver.R          ,reference/fig9/signal.json                ,-a 2      ,                         ,tikz:tikz_pdf
-#reference/fig10a-covert-inode-pmem                 ,fig10-covert-inode.R                       ,reference/fig10/nvram.csv                 ,-a 3      ,                         ,tikz:tikz_pdf
-#reference/fig10b-covert-inode-dram                 ,fig10-covert-inode.R                       ,reference/fig10/dram.csv                  ,-a 4      ,                         ,tikz:tikz_pdf
-#reference/fig12-side-sql-u1                        ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                    ,-a 1      ,                         ,pdf
-#reference/fig12-side-sql-u2                        ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                    ,-a 2      ,                         ,pdf
-#reference/fig12-side-sql-c1                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 3      ,                         ,pdf
-#reference/fig12-side-sql-q1                        ,fig12-side-channel-feature.R               ,reference/fig12/Q1.csv                    ,-a 4      ,                         ,pdf
-#reference/fig12-side-sql-i1                        ,fig12-side-channel-feature.R               ,reference/fig12/I1.csv                    ,-a 5      ,                         ,pdf
-#reference/fig12-side-sql-s1                        ,fig12-side-channel-feature.R               ,reference/fig12/S1.csv                    ,-a 6      ,                         ,pdf
-#reference/fig12-side-sql-c2                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 7      ,                         ,pdf
-#reference/fig12-side-sql-c3                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                    ,-a 8      ,                         ,pdf
-#reference/fig13-side-sql-range-month1              ,fig13-side-channel-heat.R                  ,reference/fig13/M1.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month2              ,fig13-side-channel-heat.R                  ,reference/fig13/M2.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month3              ,fig13-side-channel-heat.R                  ,reference/fig13/M3.csv                    ,-a 2      ,                         ,png
-#reference/fig13-side-sql-range-month4              ,fig13-side-channel-heat.R                  ,reference/fig13/M4.csv                    ,-a 2      ,                         ,png
-#reference/fig14-pmdk-kv-memory-pattern-all         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 0      ,                         ,png
-#reference/fig14-pmdk-kv-memory-pattern-256         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 256    ,                         ,tikz:tikz_pdf
-#reference/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 512    ,                         ,tikz:tikz_pdf
-#reference/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 768    ,                         ,tikz:tikz_pdf
-#reference/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv               ,-a 1024   ,                         ,tikz:tikz_pdf
-#reference/fig15-fp-exptmod-all                     ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv               ,-a 0      ,                         ,png
-#reference/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv               ,-a 3      ,                         ,tikz:tikz_pdf
+target                                              ,code                                       ,data                                       ,arg       ,post_process             ,type
+#reference/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reference/fig2/pointer_chasing.csv         ,          ,                         ,tikz:tikz_pdf
+#reference/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reference/fig4/data.json                   ,-a 1      ,                         ,pdf
+#reference/fig5a-overwrite-iter-lat                 ,fig5a-overwrite-iter-lat.R                 ,reference/fig5/overwrite_256_filtered.csv  ,          ,                         ,pdf
+#reference/fig5b-overwrite-delay-p99-latency-sample ,fig5b-overwrite-delay-p99-latency-sample.R ,reference/fig6/data.json                   ,          ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
+#reference/fig6-overwrite-delay-p99-latency         ,fig6-overwrite-delay-p99-latency.R         ,reference/fig6/data.json                   ,          ,                         ,pdf
+#reference/fig7-wear-leveling-trigger-100k-dist     ,fig7-wear-leveling-trigger-100k-dist.R     ,reference/fig7/data.json                   ,-c 100000 ,                         ,tikz:tikz_pdf
+#reference/fig9b-covert-vm-summary                  ,fig9b-covert-vm-summary.R                  ,reference/fig9/data.json                   ,          ,                         ,pdf
+#reference/fig9c-covert-vm-signal-receiver          ,fig9c-covert-vm-signal-receiver.R          ,reference/fig9/signal.json                 ,-a 2      ,                         ,tikz:tikz_pdf
+#reference/fig10a-covert-inode-pmem                 ,fig10-covert-inode.R                       ,reference/fig10/nvram.csv                  ,-a 3      ,                         ,tikz:tikz_pdf
+#reference/fig10b-covert-inode-dram                 ,fig10-covert-inode.R                       ,reference/fig10/dram.csv                   ,-a 4      ,                         ,tikz:tikz_pdf
+#reference/fig12-side-sql-u1                        ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                     ,-a 1      ,                         ,pdf
+#reference/fig12-side-sql-u2                        ,fig12-side-channel-feature.R               ,reference/fig12/U1.csv                     ,-a 2      ,                         ,pdf
+#reference/fig12-side-sql-c1                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                     ,-a 3      ,                         ,pdf
+#reference/fig12-side-sql-q1                        ,fig12-side-channel-feature.R               ,reference/fig12/Q1.csv                     ,-a 4      ,                         ,pdf
+#reference/fig12-side-sql-i1                        ,fig12-side-channel-feature.R               ,reference/fig12/I1.csv                     ,-a 5      ,                         ,pdf
+#reference/fig12-side-sql-s1                        ,fig12-side-channel-feature.R               ,reference/fig12/S1.csv                     ,-a 6      ,                         ,pdf
+#reference/fig12-side-sql-c2                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                     ,-a 7      ,                         ,pdf
+#reference/fig12-side-sql-c3                        ,fig12-side-channel-feature.R               ,reference/fig12/C1.csv                     ,-a 8      ,                         ,pdf
+#reference/fig13-side-sql-range-month1              ,fig13-side-channel-heat.R                  ,reference/fig13/M1.csv                     ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month2              ,fig13-side-channel-heat.R                  ,reference/fig13/M2.csv                     ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month3              ,fig13-side-channel-heat.R                  ,reference/fig13/M3.csv                     ,-a 2      ,                         ,png
+#reference/fig13-side-sql-range-month4              ,fig13-side-channel-heat.R                  ,reference/fig13/M4.csv                     ,-a 2      ,                         ,png
+#reference/fig14-pmdk-kv-memory-pattern-all         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 0      ,                         ,png
+#reference/fig14-pmdk-kv-memory-pattern-256         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 256    ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 512    ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 768    ,                         ,tikz:tikz_pdf
+#reference/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 1024   ,                         ,tikz:tikz_pdf
+#reference/fig15-fp-exptmod-all                     ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv                ,-a 0      ,                         ,png
+#reference/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv                ,-a 3      ,                         ,tikz:tikz_pdf
+reference/fig16-pmdk-kv-memory-layout               ,fig16-pmdk-kv-memory-layout.R              ,reference/fig16/original_memory_layout.csv ,-a 0      ,                         ,tikz:tikz_pdf
+reference/fig16-pmdk-kv-memory-layout-secure        ,fig16-pmdk-kv-memory-layout.R              ,reference/fig16/mitigate_memory_layout.csv ,-a 1      ,                         ,tikz:tikz_pdf
+reference/fig16-mitigation-performance              ,fig16-mitigation-performance.R             ,reference/fig16/performance.csv            ,          ,                         ,tikz:tikz_pdf
 
-#reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv        ,          ,                         ,tikz:tikz_pdf
-#reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reproduce/fig4/data.json                  ,-a 1      ,                         ,pdf
-#reproduce/fig5a-overwrite-iter-lat                 ,fig5a-overwrite-iter-lat.R                 ,reproduce/fig5/overwrite_256_filtered.csv ,          ,                         ,pdf
-#reproduce/fig5b-overwrite-delay-p99-latency-sample ,fig5b-overwrite-delay-p99-latency-sample.R ,reproduce/fig6/data.json                  ,          ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
-#reproduce/fig6-overwrite-delay-p99-latency         ,fig6-overwrite-delay-p99-latency.R         ,reproduce/fig6/data.json                  ,          ,                         ,pdf
-#reproduce/fig7-wear-leveling-trigger-100k-dist     ,fig7-wear-leveling-trigger-100k-dist.R     ,reproduce/fig7/data.json                  ,-c 100000 ,                         ,tikz:tikz_pdf
-#reproduce/fig9b-covert-vm-summary                  ,fig9b-covert-vm-summary.R                  ,reproduce/fig9/data.json                  ,          ,                         ,pdf
-#reproduce/fig9c-covert-vm-signal-receiver          ,fig9c-covert-vm-signal-receiver.R          ,reproduce/fig9/signal.json                ,-a 2      ,                         ,tikz:tikz_pdf
-#reproduce/fig10a-covert-inode-pmem                 ,fig10-covert-inode.R                       ,reproduce/fig10/nvram.csv                 ,-a 3      ,                         ,tikz:tikz_pdf
-#reproduce/fig10b-covert-inode-dram                 ,fig10-covert-inode.R                       ,reproduce/fig10/dram.csv                  ,-a 4      ,                         ,tikz:tikz_pdf
-#reproduce/fig12-side-sql-u1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/U1.csv                    ,-a 1      ,                         ,pdf
-#reproduce/fig12-side-sql-u2                        ,fig12-side-channel-feature.R               ,reproduce/fig12/U1.csv                    ,-a 2      ,                         ,pdf
-#reproduce/fig12-side-sql-c1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                    ,-a 3      ,                         ,pdf
-#reproduce/fig12-side-sql-q1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/Q1.csv                    ,-a 4      ,                         ,pdf
-#reproduce/fig12-side-sql-i1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/I1.csv                    ,-a 5      ,                         ,pdf
-#reproduce/fig12-side-sql-s1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/S1.csv                    ,-a 6      ,                         ,pdf
-#reproduce/fig12-side-sql-c2                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                    ,-a 7      ,                         ,pdf
-#reproduce/fig12-side-sql-c3                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                    ,-a 8      ,                         ,pdf
-#reproduce/fig13-side-sql-range-month1              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M1.csv                    ,-a 2      ,                         ,png
-#reproduce/fig13-side-sql-range-month2              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M2.csv                    ,-a 2      ,                         ,png
-#reproduce/fig13-side-sql-range-month3              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M3.csv                    ,-a 2      ,                         ,png
-#reproduce/fig13-side-sql-range-month4              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M4.csv                    ,-a 2      ,                         ,png
-#reproduce/fig14-pmdk-kv-memory-pattern-all         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 0      ,                         ,png
-#reproduce/fig14-pmdk-kv-memory-pattern-256         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 256    ,                         ,tikz:tikz_pdf
-#reproduce/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 512    ,                         ,tikz:tikz_pdf
-#reproduce/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 768    ,                         ,tikz:tikz_pdf
-#reproduce/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv               ,-a 1024   ,                         ,tikz:tikz_pdf
-#reproduce/fig15-fp-exptmod-all                     ,fig15-side-channel-shared-lib.R            ,reproduce/fig15/summary.csv               ,-a 0      ,                         ,png
-#reproduce/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reproduce/fig15/summary.csv               ,-a 4      ,                         ,tikz:tikz_pdf
+#reproduce/fig2a-pointer-chasing                    ,fig2a-pointer-chasing.R                    ,reproduce/fig2/pointer_chasing.csv         ,          ,                         ,tikz:tikz_pdf
+#reproduce/fig4-pointer-chasing-heatmap             ,fig4-pointer-chasing-heatmap.R             ,reproduce/fig4/data.json                   ,-a 1      ,                         ,pdf
+#reproduce/fig5a-overwrite-iter-lat                 ,fig5a-overwrite-iter-lat.R                 ,reproduce/fig5/overwrite_256_filtered.csv  ,          ,                         ,pdf
+#reproduce/fig5b-overwrite-delay-p99-latency-sample ,fig5b-overwrite-delay-p99-latency-sample.R ,reproduce/fig6/data.json                   ,          ,tikz:heatmap_path_fix.sh ,tikz:tikz_pdf
+#reproduce/fig6-overwrite-delay-p99-latency         ,fig6-overwrite-delay-p99-latency.R         ,reproduce/fig6/data.json                   ,          ,                         ,pdf
+#reproduce/fig7-wear-leveling-trigger-100k-dist     ,fig7-wear-leveling-trigger-100k-dist.R     ,reproduce/fig7/data.json                   ,-c 100000 ,                         ,tikz:tikz_pdf
+#reproduce/fig9b-covert-vm-summary                  ,fig9b-covert-vm-summary.R                  ,reproduce/fig9/data.json                   ,          ,                         ,pdf
+#reproduce/fig9c-covert-vm-signal-receiver          ,fig9c-covert-vm-signal-receiver.R          ,reproduce/fig9/signal.json                 ,-a 2      ,                         ,tikz:tikz_pdf
+#reproduce/fig10a-covert-inode-pmem                 ,fig10-covert-inode.R                       ,reproduce/fig10/nvram.csv                  ,-a 3      ,                         ,tikz:tikz_pdf
+#reproduce/fig10b-covert-inode-dram                 ,fig10-covert-inode.R                       ,reproduce/fig10/dram.csv                   ,-a 4      ,                         ,tikz:tikz_pdf
+#reproduce/fig12-side-sql-u1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/U1.csv                     ,-a 1      ,                         ,pdf
+#reproduce/fig12-side-sql-u2                        ,fig12-side-channel-feature.R               ,reproduce/fig12/U1.csv                     ,-a 2      ,                         ,pdf
+#reproduce/fig12-side-sql-c1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                     ,-a 3      ,                         ,pdf
+#reproduce/fig12-side-sql-q1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/Q1.csv                     ,-a 4      ,                         ,pdf
+#reproduce/fig12-side-sql-i1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/I1.csv                     ,-a 5      ,                         ,pdf
+#reproduce/fig12-side-sql-s1                        ,fig12-side-channel-feature.R               ,reproduce/fig12/S1.csv                     ,-a 6      ,                         ,pdf
+#reproduce/fig12-side-sql-c2                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                     ,-a 7      ,                         ,pdf
+#reproduce/fig12-side-sql-c3                        ,fig12-side-channel-feature.R               ,reproduce/fig12/C1.csv                     ,-a 8      ,                         ,pdf
+#reproduce/fig13-side-sql-range-month1              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M1.csv                     ,-a 2      ,                         ,png
+#reproduce/fig13-side-sql-range-month2              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M2.csv                     ,-a 2      ,                         ,png
+#reproduce/fig13-side-sql-range-month3              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M3.csv                     ,-a 2      ,                         ,png
+#reproduce/fig13-side-sql-range-month4              ,fig13-side-channel-heat.R                  ,reproduce/fig13/M4.csv                     ,-a 2      ,                         ,png
+#reproduce/fig14-pmdk-kv-memory-pattern-all         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv                ,-a 0      ,                         ,png
+#reproduce/fig14-pmdk-kv-memory-pattern-256         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv                ,-a 256    ,                         ,tikz:tikz_pdf
+#reproduce/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv                ,-a 512    ,                         ,tikz:tikz_pdf
+#reproduce/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv                ,-a 768    ,                         ,tikz:tikz_pdf
+#reproduce/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reproduce/fig14/summary.csv                ,-a 1024   ,                         ,tikz:tikz_pdf
+#reproduce/fig15-fp-exptmod-all                     ,fig15-side-channel-shared-lib.R            ,reproduce/fig15/summary.csv                ,-a 0      ,                         ,png
+#reproduce/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reproduce/fig15/summary.csv                ,-a 4      ,                         ,tikz:tikz_pdf
+#reproduce/fig16-pmdk-kv-memory-layout              ,fig16-pmdk-kv-memory-layout.R              ,reproduce/fig16/original_memory_layout.csv ,-a 0      ,                         ,tikz:tikz_pdf
+#reproduce/fig16-pmdk-kv-memory-layout-secure       ,fig16-pmdk-kv-memory-layout.R              ,reproduce/fig16/mitigate_memory_layout.csv ,-a 1      ,                         ,tikz:tikz_pdf
+#reproduce/fig16-mitigation-performance             ,fig16-mitigation-performance.R             ,reproduce/fig16/performance.csv            ,          ,                         ,tikz:tikz_pdf

@@ -323,7 +323,7 @@ $ sudo -i su
 $ cd /home/usenix/NVLeak/nvleak/user/side_channel/map_cli
 
 # Init the key-value store
-$ ./run.sh # Then enter '1' to select './runners/0_init.sh' script to run
+$ ./run.sh # Then enter '10' to select './runners/10_init.sh' script to run
 # It takes ~1 min to run
 
 # Check if the store data file is created
@@ -331,7 +331,7 @@ $ ls -lh /mnt/pmem/map_data
 -rw------- 1 root root 8.0M Oct 13 00:11 /mnt/pmem/map_data
 
 # Run the experiment
-$ ./run.sh # Then enter '10' to select './runners/9_read_only_no_init.sh'
+$ ./run.sh # Then enter '9' to select './runners/9_read_only_no_init.sh'
 ```
 
 Troubleshoot
