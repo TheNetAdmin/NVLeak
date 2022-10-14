@@ -22,7 +22,11 @@ $ bash nvleak/script/configure/nvleak.sh
 
 > NVLeak contains a kernel module which is compatible with Linux 5.4.0 (we previously compiled it on Linux 4.15 and 5.1). Newer Linux kernel may have breaking changes to filesystem APIs that NVLeak relies on, and thus may break the compilation.
 
-We provide a set of scripts to automatically configure the Linux environment. These scripts check for the host name and set up the environments accordingly. You may need to modify the scripts under `nvleak/scripts/machine` to use them on your machine, or alternatively you can manually set up the environments as described later in this doc.
+We provide a set of scripts to automatically configure the Linux environment. These scripts check for the host name and set up the environments accordingly. You may need to modify the scripts under `nvleak/scripts/machine` to use them on your machine, specifically, you need to modify:
+
+   1. `nvleak/scripts/batch/default_config.sh`: To add your NVRAM machine's system and hardware info for reverse engineering tools
+   2. `nvleak/scripts/machine/grub.sh`: To update the kernel names on your machine and add your gurb settings
+   3. `nvleak/user/side_channel/common.sh`: To add your environment's device names and tool path
 
 ### Set up the environment using scripts
 
@@ -115,7 +119,3 @@ Log in to the NVRAM Server and:
    ```shell
    $ sudo apt install jq
    ```
-
-### Manually set up the environments
-
-> TODO: To be added
