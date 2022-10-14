@@ -291,8 +291,8 @@ def gen_makefile(cfg_filename, make_filename):
     # generate .gitignore for all pdf targets
     with open("figure/.gitignore", "w") as f:
         # f.write('\n'.join(all_targets['pdf']))
-        # f.write('\n')
-        # f.write('\n'.join(all_targets['tikz_pdf']))
+        f.write('\n')
+        f.write('\n'.join(all_targets['tikz']))
         f.write("\n")
         f.write("\n".join(all_targets["tikz_svg"]))
         f.write("\n")
