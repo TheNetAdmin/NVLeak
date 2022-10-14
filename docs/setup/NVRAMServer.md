@@ -30,7 +30,7 @@ We provide a set of scripts to automatically configure the Linux environment. Th
 
 Log in to the NVRAM Server and:
 
-1. Log in to the root user as the scripts implicitly assume they run with the sudo priviledge (assuming username is `usenix`):
+1. Log in to the root user as the scripts implicitly assume they run with the sudo privilege (assuming username is `usenix`):
 
    ```shell
    $ sudo -i su
