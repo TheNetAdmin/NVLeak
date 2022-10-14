@@ -12,8 +12,7 @@ On the *NVRAM Server*, run the following lines to get the NVLeak code and initia
 ```shell
 $ git clone https://github.com/TheNetAdmin/NVLeak.git
 $ cd NVLeak
-$ git submodule init
-$ git submodule update --recursive
+$ git submodule update --init --recursive
 $ bash nvleak/script/configure/nvleak.sh
 ```
 
