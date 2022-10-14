@@ -45,6 +45,8 @@ The major claims of our [USENIX Security 23 paper](./usenix23-nvleak.pdf) are li
 | 17       | Reverse Engineering | Detailed pointer chasing results on Server A                |
 | 18       | Reverse Engineering | Reverse engineering results on Server B                     |
 
+> NOTE: Reproducing the full results can take up **60 GiB** of your disk space to store the result data. Please pre-allocate this disk space, or incrementally reproduce the results and delete the data once the result is reproduced.
+
 To reproduce these results, see the following instructions:
 
 1. To reproduce reverse engineering results (Figure 2-7 and 17), follow [this instruction](./reproduce/ReverseEngineering.md).
