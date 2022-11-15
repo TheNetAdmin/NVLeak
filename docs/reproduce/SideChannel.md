@@ -128,7 +128,7 @@ Usage: side_channel
        -p probe_set_index (0 to 255)
 
 # Download the NPPES data
-$ cd NVLeak/nvleak/user/side_channel/data
+$ cd NVLeak/nvleak/user/side_channel/data/nppes_npi/
 $ bash prepare.sh
 
 # Create SQLite database from NPPES data

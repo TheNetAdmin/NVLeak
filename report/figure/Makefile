@@ -8,6 +8,30 @@ make_flag:=--no-print-directory -j8
 
 RSCRIPT:=Rscript --no-save --no-restore
 
+plot/reference/fig13-side-sql-range-month1.png: ../data/reference/fig13/M1.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
+plot/reference/fig13-side-sql-range-month2.png: ../data/reference/fig13/M2.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
+plot/reference/fig13-side-sql-range-month3.png: ../data/reference/fig13/M3.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
+plot/reference/fig13-side-sql-range-month4.png: ../data/reference/fig13/M4.csv \
+                                                src/fig13-side-channel-heat.R
+	@echo -e "GEN \t $@"
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+
+
 ./Rplots.svg: ./Rplots.pdf
 	@echo -e "GEN \t $@"
 	@bash ../script/figure/pdf_to_svg/pdf_to_svg.sh $<
@@ -24,8 +48,11 @@ all: all_tikz     \
 .PHONY: all_pdf
 all_pdf: 
 
-.PHONY: all_png
-all_png: 
+.PHONY:  all_png
+all_png: plot/reference/fig13-side-sql-range-month1.png \
+         plot/reference/fig13-side-sql-range-month2.png \
+         plot/reference/fig13-side-sql-range-month3.png \
+         plot/reference/fig13-side-sql-range-month4.png
 
 .PHONY: all_tikz
 all_tikz: 
@@ -86,7 +113,7 @@ clean_pdf:
 
 .PHONY: clean_png
 clean_png: 
-	rm -f 
+	rm -f plot/reference/fig13-side-sql-range-month1.png plot/reference/fig13-side-sql-range-month2.png plot/reference/fig13-side-sql-range-month3.png plot/reference/fig13-side-sql-range-month4.png
 
 .PHONY: clean_symlinks
 clean_symlinks: 

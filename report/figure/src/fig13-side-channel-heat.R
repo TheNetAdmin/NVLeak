@@ -20,9 +20,8 @@ if (opt$arg == 1) {
 } else {
     df <- read_data(opt$data) %>%
         filter(iter <= 40000) %>%
-        filter(lat < 1000) %>%
-        filter(lat > set_median)
-    x_break <- c(0, 10000, 20000, 30000, 40000)
+        filter(lat < 1000)
+    x_break <- c(0, 10000, 10000 * 2, 10000 * 3, 10000 * 4)
     y_break <- c(0, 64, 128, 192, 256)
     legend_position <- "top"
 }
