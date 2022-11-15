@@ -463,6 +463,7 @@ $ cd NVLeak/nvleak/user/side_channel/wolfssl/wolf/test_rsa/
 $ make
 
 # Test if the victim application works
+$ export LD_LIBRARY_PATH=/mnt/pmem/lib
 $ ./rsa_keytest
 ----------------------------------------------------------------
 n sign: 0
@@ -514,9 +515,9 @@ $ bash analyze_lib_file.sh
 $ export pageno=# FILL THIS: the 'pageno' field
 $ export offset=# FILL THIS: the 'offset' field
 
-# E.g., when probing the 'fp_sqr' function:
-# export pageno=40
-# export offset=3696
+# E.g., when probing the '_fp_exptmod_base_2' function:
+# export pageno=43
+# export offset=1120
 # Do NOT directly use these values, change them to the ones you get from the above output
 ```
 
@@ -529,8 +530,8 @@ $ cd /home/usenix/NVLeak/nvleak/user/side_channel/wolfssl
 # Before running, set the 'pageno' and 'offset' environment variables, because you just changed user to root, they may not carry the env vars you just set
 
 # Run the side channel
-$ ./run.sh # Enter 2 to select './runner/2_probe_rsa.sh' script to run
-
+$ ./run.sh
+# Enter 2 to select './runner/2_probe_rsa.sh' script to run
 ```
 
 

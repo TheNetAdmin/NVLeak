@@ -292,6 +292,7 @@ def gen_makefile(cfg_filename, make_filename):
     with open("figure/.gitignore", "w") as f:
         # f.write('\n'.join(all_targets['pdf']))
         f.write('\n')
+        f.write("plot/**/*.tikz\n")
         f.write('\n'.join(all_targets['tikz']))
         f.write("\n")
         f.write("\n".join(all_targets["tikz_svg"]))

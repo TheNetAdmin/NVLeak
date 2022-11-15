@@ -5,4 +5,4 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-ln -s ../../../../data/side_wolfssl/results/$1/summary.csv summary.csv
+ln -sf ../../../../data/side_wolfssl/results/$1/summary.csv summary.csv

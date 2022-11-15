@@ -26,8 +26,8 @@ target                                              ,code                       
 #reference/fig14-pmdk-kv-memory-pattern-512         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 512    ,                         ,tikz:tikz_pdf
 #reference/fig14-pmdk-kv-memory-pattern-768         ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 768    ,                         ,tikz:tikz_pdf
 #reference/fig14-pmdk-kv-memory-pattern-1024        ,fig14-pmdk-kv-memory-pattern.R             ,reference/fig14/summary.csv                ,-a 1024   ,                         ,tikz:tikz_pdf
-#reference/fig15-fp-exptmod-all                     ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv                ,-a 0      ,                         ,png
-#reference/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv                ,-a 3      ,                         ,tikz:tikz_pdf
+reference/fig15-fp-exptmod-all                     ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv                ,-a 0      ,                         ,png
+reference/fig15-fp-exptmod                         ,fig15-side-channel-shared-lib.R            ,reference/fig15/summary.csv                ,-a 3      ,                         ,png
 #reference/fig16-pmdk-kv-memory-layout              ,fig16-pmdk-kv-memory-layout.R              ,reference/fig16/original_memory_layout.csv ,-a 0      ,                         ,tikz:tikz_pdf
 #reference/fig16-pmdk-kv-memory-layout-secure       ,fig16-pmdk-kv-memory-layout.R              ,reference/fig16/mitigate_memory_layout.csv ,-a 1      ,                         ,tikz:tikz_pdf
 #reference/fig16-mitigation-performance             ,fig16-mitigation-performance.R             ,reference/fig16/performance.csv            ,          ,                         ,tikz:tikz_pdf

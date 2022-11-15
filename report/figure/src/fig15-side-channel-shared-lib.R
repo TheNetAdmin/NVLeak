@@ -16,7 +16,7 @@ fig_height <- 1.2 * fig_full_height
 if (opt$arg == 0) {
     # Full output
     iter_beg <- 0
-    iter_end <- 1200 * 300
+    iter_end <- 1200 * 600
     # iter_beg <- 146800
     # iter_end <- 147200
     x_breaks <- seq(0, 12000, iter_end)
@@ -38,14 +38,14 @@ if (opt$arg == 0) {
     x_limits <- c(0, iter_end - iter_beg)
     y_limits <- c(200, 1000)
 } else if (opt$arg == 3) {
-    iter_beg <- 146800
-    iter_end <- 147200
+    iter_beg <- 146500
+    iter_end <- 147500
     x_breaks <- seq(0, iter_end - iter_beg, 1000)
     x_limits <- c(0, iter_end - iter_beg)
     y_limits <- c(200, 1000)
-} else if (opt$arg == 43) {
-    iter_beg <- 146800
-    iter_end <- 147200
+} else if (opt$arg == 4) {
+    iter_beg <- 150000
+    iter_end <- 165000
     x_breaks <- seq(0, iter_end - iter_beg, 1000)
     x_limits <- c(0, iter_end - iter_beg)
     y_limits <- c(200, 1000)

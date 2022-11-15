@@ -8,28 +8,16 @@ make_flag:=--no-print-directory -j8
 
 RSCRIPT:=Rscript --no-save --no-restore
 
-plot/reference/fig13-side-sql-range-month1.png: ../data/reference/fig13/M1.csv \
-                                                src/fig13-side-channel-heat.R
+plot/reference/fig15-fp-exptmod-all.png: ../data/reference/fig15/summary.csv \
+                                         src/fig15-side-channel-shared-lib.R
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 0
 
 
-plot/reference/fig13-side-sql-range-month2.png: ../data/reference/fig13/M2.csv \
-                                                src/fig13-side-channel-heat.R
+plot/reference/fig15-fp-exptmod.png: ../data/reference/fig15/summary.csv \
+                                     src/fig15-side-channel-shared-lib.R
 	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
-
-
-plot/reference/fig13-side-sql-range-month3.png: ../data/reference/fig13/M3.csv \
-                                                src/fig13-side-channel-heat.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
-
-
-plot/reference/fig13-side-sql-range-month4.png: ../data/reference/fig13/M4.csv \
-                                                src/fig13-side-channel-heat.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 2
+	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 3
 
 
 ./Rplots.svg: ./Rplots.pdf
@@ -49,10 +37,8 @@ all: all_tikz     \
 all_pdf: 
 
 .PHONY:  all_png
-all_png: plot/reference/fig13-side-sql-range-month1.png \
-         plot/reference/fig13-side-sql-range-month2.png \
-         plot/reference/fig13-side-sql-range-month3.png \
-         plot/reference/fig13-side-sql-range-month4.png
+all_png: plot/reference/fig15-fp-exptmod-all.png \
+         plot/reference/fig15-fp-exptmod.png
 
 .PHONY: all_tikz
 all_tikz: 
@@ -113,7 +99,7 @@ clean_pdf:
 
 .PHONY: clean_png
 clean_png: 
-	rm -f plot/reference/fig13-side-sql-range-month1.png plot/reference/fig13-side-sql-range-month2.png plot/reference/fig13-side-sql-range-month3.png plot/reference/fig13-side-sql-range-month4.png
+	rm -f plot/reference/fig15-fp-exptmod-all.png plot/reference/fig15-fp-exptmod.png
 
 .PHONY: clean_symlinks
 clean_symlinks: 
