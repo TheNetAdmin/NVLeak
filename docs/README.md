@@ -53,3 +53,12 @@ To reproduce these results, see the following instructions:
 2. To reproduce covert channel results (Figure 9-10), follow [this instruction](./reproduce/CovertChannel.md)
 3. To reproduce side channel results (Figure 12-15), follow [this instruction](./reproduce/SideChannel.md)
 4. To reproduce the mitigation result (Figure 16), follow [this instruction](./reproduce/Mitigation.md)
+
+The estimated resources it takes to reproduce results:
+
+| Experiments         | Human Hour | Compute Hour | Disk Space |
+| :------------------ | ---------: | -----------: | ---------: |
+| Reverse Engineering |        1~2 |            6 |   > 18 GiB |
+| Covert Channel      |        1~2 |           16 |     32 GiB |
+| Side Channel        |        2~4 |            1 |      1 GiB |
+| Mitigations         |        2~3 |            1 |      1 GiB |

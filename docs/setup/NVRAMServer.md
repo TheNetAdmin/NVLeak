@@ -1,11 +1,36 @@
 # Set up the NVRAM Server
 
+## Software and hardware environment
+
+As specified in the paper, we set up the NVRAM server with the following software and hardware:
+
+| Hardware/Software | Version                                                                                             |
+| :---------------- | :-------------------------------------------------------------------------------------------------- |
+| CPU               | Intel(R) Xeon(R) Gold 6230 CPU @ 2.10GHz                                                            |
+| NVRAM             | Intel Optane DC Persistent Memory Gen 1, 2666 MHz, 128 GiB per DIMM, 6 DIMM per CPU                 |
+| NVRAM Firmware    | 01.02.00.5355                                                                                       |
+| OS                | Ubuntu 20.04.4 LTS                                                                                  |
+| Kernel            | Linux 5.4.0-110-generic #124-Ubuntu SMP Thu Apr 14 19:46:19 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux |
+| GCC               | 9.4.0-1ubuntu1~20.04.1                                                                              |
+| ipmctl            | Intel(R) Optane(TM) Persistent Memory Command Line Interface Version 02.00.00.3885                  |
+| ndctl             | 67+                                                                                                 |
+
 ## Install required Optane management tools
 
 1. Install `ipmctl`
 2. Install `ndctl`
 
 > These tools are pre-installed on the machine we provided to Usenix Security 23 AE committee.
+
+## Set up project root path environment
+
+NVLeak uses a shell env `PROJ_ROOT` to point to the root path of the NVLeak, i.e., it assumes `$PROJ_ROOT/NVLeak` is the NVLeak repo.
+
+The default value of `PROJ_ROOT` is `/home/usenix` and you may set the global env var to override it by:
+
+```shell
+export PROJ_ROOT=/path/to/your/project/root/
+```
 
 ## Get the code
 
@@ -38,7 +63,7 @@ Log in to the NVRAM Server and:
 
    ```shell
    $ sudo -i su
-   $ cd /home/usenix/NVLeak
+   $ cd $PROJ_ROOT/NVLeak
    ```
 
 2. Set up the kernel boot command and reboot
@@ -105,10 +130,10 @@ Log in to the NVRAM Server and:
    # If you do not see the above error message, then try `git diff`,
    # and if `git diff` works fine, then you can skip the following `git config`
 
-   $ git config --global --add safe.directory /home/usenix/NVLeak/nvleak
+   $ git config --global --add safe.directory $PROJ_ROOT/NVLeak/nvleak
 
    # Check if git runs fine now under submodule dir
-   $ cd /home/usenix/NVLeak/nvleak
+   $ cd $PROJ_ROOT/NVLeak/nvleak
    $ git status
    ...
    nothing to commit, working tree clean

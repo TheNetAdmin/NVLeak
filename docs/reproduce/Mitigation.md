@@ -8,7 +8,7 @@ Follow the instruction of [PMDK Side Channel](./SideChannel.md#reproduce-pmdk-si
 
 ```shell
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/user/side_channel/map_cli
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/side_channel/map_cli
 
 # Run experiments for Fig 16a
 $ ./run.sh # Select "2) ./runners/2_read_only.sh"
@@ -20,7 +20,7 @@ $ ./run.sh # Select "6) ./runners/6_read_only_secure.sh"
 ## Run Mitigation Performance Evaluation (Figure 16 c)
 
 ```shell
-$ cd /home/usenix/NVLeak/nvleak/user/side_channel/mitigation_benchmark
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/side_channel/mitigation_benchmark
 $ bash setup.sh
 $ bash run_all.sh
 ```

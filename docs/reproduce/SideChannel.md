@@ -98,7 +98,7 @@ $ ndctl list -u
 
 # Mount PMEM devices
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/user/side_channel/setup
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/side_channel/setup
 $ bash mount.sh
 
 # Check if mount.sh works fine
@@ -143,7 +143,7 @@ This experiment takes ~40 mins to run.
 
 ```shell
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/user/side_channel/sqlite
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/side_channel/sqlite
 $ ./run.sh
 ```
 
@@ -320,7 +320,7 @@ $ ndctl list -u
 
 ```shell
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/user/side_channel/map_cli
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/side_channel/map_cli
 
 # Init the key-value store
 $ ./run.sh # Then enter '10' to select './runners/10_init.sh' script to run
@@ -443,7 +443,7 @@ $ ndctl list -u
 
 ### Build wolfSSL Dependencies
 
-Get and build wolfSSL
+Get and build wolfSSL, this wolfSSL is taken from the [public v4.2.0 wolfSSL](https://github.com/wolfSSL/wolfssl/releases/tag/v4.2.0-stable), with one additional clflush in the program:
 
 ```shell
 $ cd $HOME
@@ -525,7 +525,7 @@ Run the side channel
 
 ```shell
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/user/side_channel/wolfssl
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/side_channel/wolfssl
 
 # Before running, set the 'pageno' and 'offset' environment variables, because you just changed user to root, they may not carry the env vars you just set
 
