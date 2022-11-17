@@ -11,7 +11,7 @@ The QEMU package provided by Ubuntu is quite old (QEMU 1.4.2). To use more up-to
 ```shell
 $ sudo apt-get build-dep qemu
 
-$ cd /home/usenix
+$ cd $PROJ_ROOT
 $ wget https://download.qemu.org/qemu-6.0.0.tar.xz
 $ tar xvJf qemu-6.0.0.tar.xz
 $ cd qemu-6.0.0
@@ -101,13 +101,13 @@ $ make -j $(nproc)
 # Test if the Cross-VM channel works
 $ sudo -i su
 # Disable SMT if haven't done so
-$ bash /home/usenix/NVLeak/nvleak/scripts/machine/smt.sh
+$ bash $PROJ_ROOT/NVLeak/nvleak/scripts/machine/smt.sh
 # You may need this line to configure git for the repo
-$ git config --global --add safe.directory /home/usenix/NVLeak/nvleak/user/covert_channel/cross_vm
+$ git config --global --add safe.directory $PROJ_ROOT/NVLeak/nvleak/user/covert_channel/cross_vm
 
 # Run a sample covert channel, if it stucks for more than a few seconds, see
 #   the following troubleshooting steps for solutions
-$ cd /home/usenix/NVLeak/nvleak/user/covert_channel/cross_vm
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/covert_channel/cross_vm
 $ ./scripts/nvleak/covert.sh debug_single
 
 # If the above single test works fine, run the following line to run the full experiment
@@ -277,7 +277,7 @@ Usage: mke2fs [-c|-l filename] [-b block-size] [-C cluster-size]
 ```shell
 # Set up the filesystem
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/user/covert_channel/inode
+$ cd $PROJ_ROOT/NVLeak/nvleak/user/covert_channel/inode
 $ bash mount.sh
 
 # Check if mount.sh works fine

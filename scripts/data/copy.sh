@@ -3,6 +3,8 @@
 set -x
 set -u
 
+PROJ_ROOT=${PROJ_ROOT:-/home/usenix/}
+
 function copy_data() {
     if [ $# -ne 2 ]; then
         echo "ERROR: copy_data() expects two arguments but got $#"
@@ -12,7 +14,7 @@ function copy_data() {
     data_dir="${2}"
     mkdir -p "${data_dir}"
     pushd "${data_dir}" || exit 2
-    rsync -avr "nv-4:/home/usenix/NVLeak/${sub_dir}/results" .
+    rsync -avr "nv-4:$PROJ_ROOT/NVLeak/${sub_dir}/results" .
     popd || exit 2
 }
 

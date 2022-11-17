@@ -2,6 +2,15 @@
 
 The Dev Server needs to be set up for data parsing and report generation. NVLeak scripts use MongoDB to store the parsed data, and then fetch the useful data from MongoDB to generate plots.
 
+## System and software environment
+
+The dev server requires the following system and software:
+
+1. OS: Any Linux-based distro
+2. Python: `3.8+` (We use `3.10.8`)
+   1. Python packages: see the end of this doc
+3. Docker and docker-compose: any recent version (We use `Docker version 20.10.21, build baeda1f82a`)
+
 ## Set Up the MongoDB
 
 You may use the Docker compose file to set up the MongoDB:

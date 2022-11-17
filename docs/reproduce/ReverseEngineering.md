@@ -28,7 +28,7 @@ Try to load these kernel modules and then unload them, to see if they work prope
 
 ```shell
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak
+$ cd $PROJ_ROOT/NVLeak/nvleak
 
 # Set up PMEM devices and mount kernel modules
 # Assume the /dev/pmem0 is DRAM and /dev/pmem1 is NVRAM
@@ -79,7 +79,7 @@ To reproduce Figure 2, please run LENS experiments, instead of running NVLeak.
    # Experiments assume sudo permission so log in to the root user.
    # Note: executing scripts with `sudo` command does NOT work properly, so log in to root instead
    $ sudo -i su
-   $ cd /home/usenix/NVLeak/lens
+   $ cd $PROJ_ROOT/NVLeak/lens
 
    $ cd scripts
    # dram_dev and nvram_dev values are set up in the previous section
@@ -123,7 +123,7 @@ To reproduce Figure 2, please run LENS experiments, instead of running NVLeak.
    #       you should define it again on the Dev Server,
    #       or replace with the task ID you get in previous steps
    $ cd data/reproduce/fig2
-   $ scp nvram_server:/home/usenix/NVLeak/lens/results/${fig2a_result}/pointer_chasing.csv .
+   $ scp nvram_server:$PROJ_ROOT/NVLeak/lens/results/${fig2a_result}/pointer_chasing.csv .
    ```
 
 4. Update the report and generate plots
@@ -154,7 +154,7 @@ To reproduce Figure 2, please run LENS experiments, instead of running NVLeak.
 
    ```shell
    $ sudo -i su
-   $ cd /home/usenix/NVLeak/lens/scripts
+   $ cd $PROJ_ROOT/NVLeak/lens/scripts
    $ bash lens.sh "${dram_dev}" "${nvram_dev}" prober/buffer/amplification.sh
    $ ls ../results/tasks
    nv-4-20221010010029
@@ -302,7 +302,7 @@ To run these experiments all together:
 # Experiments take 4~5 hours to run, so run them in tmux in case ssh is disconnected
 $ tmux
 $ sudo -i su
-$ cd /home/usenix/NVLeak/nvleak/scripts/batch
+$ cd $PROJ_ROOT/NVLeak/nvleak/scripts/batch
 $ bash batch_run.sh all 001 228 112 110 111
 ```
 
