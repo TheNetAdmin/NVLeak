@@ -8,18 +8,6 @@ make_flag:=--no-print-directory -j8
 
 RSCRIPT:=Rscript --no-save --no-restore
 
-plot/reference/fig15-fp-exptmod-all.png: ../data/reference/fig15/summary.csv \
-                                         src/fig15-side-channel-shared-lib.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 0
-
-
-plot/reference/fig15-fp-exptmod.png: ../data/reference/fig15/summary.csv \
-                                     src/fig15-side-channel-shared-lib.R
-	@echo -e "GEN \t $@"
-	@${RSCRIPT} $(word 2,$^) --data $< --out $@ --type png -a 3
-
-
 ./Rplots.svg: ./Rplots.pdf
 	@echo -e "GEN \t $@"
 	@bash ../script/figure/pdf_to_svg/pdf_to_svg.sh $<
@@ -36,9 +24,8 @@ all: all_tikz     \
 .PHONY: all_pdf
 all_pdf: 
 
-.PHONY:  all_png
-all_png: plot/reference/fig15-fp-exptmod-all.png \
-         plot/reference/fig15-fp-exptmod.png
+.PHONY: all_png
+all_png: 
 
 .PHONY: all_tikz
 all_tikz: 
@@ -99,7 +86,7 @@ clean_pdf:
 
 .PHONY: clean_png
 clean_png: 
-	rm -f plot/reference/fig15-fp-exptmod-all.png plot/reference/fig15-fp-exptmod.png
+	rm -f 
 
 .PHONY: clean_symlinks
 clean_symlinks: 
