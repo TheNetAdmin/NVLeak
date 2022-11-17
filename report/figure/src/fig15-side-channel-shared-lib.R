@@ -38,9 +38,9 @@ if (opt$arg == 0) {
     x_limits <- c(0, iter_end - iter_beg)
     y_limits <- c(200, 1000)
 } else if (opt$arg == 3) {
-    iter_beg <- 146500
-    iter_end <- 147500
-    x_breaks <- seq(0, iter_end - iter_beg, 1000)
+    iter_beg <- 379000
+    iter_end <- 381000
+    x_breaks <- seq(0, iter_end - iter_beg, 2000)
     x_limits <- c(0, iter_end - iter_beg)
     y_limits <- c(200, 1000)
 } else if (opt$arg == 4) {
@@ -51,13 +51,20 @@ if (opt$arg == 0) {
     y_limits <- c(200, 1000)
 }
 
-output_dev(opt$type, opt$out, fig_width, fig_height)
-
-read_data(opt$data) %>%
+df <- read_data(opt$data) %>%
     filter(iter >= iter_beg) %>%
     filter(iter <= iter_end) %>%
     # mutate(iter = iter - iter_beg) %>%
-    filter(cycles < 10000) %>%
+    filter(cycles < 1000)
+
+df_low <- df %>%
+    filter(cycles < 400)
+
+print(paste(opt$arg, ": ", nrow(df_low)))
+
+output_dev(opt$type, opt$out, fig_width, fig_height)
+
+df %>%
     naplot(
         text = element_text(size = 22),
     plot.margin = margin(r = 10)
